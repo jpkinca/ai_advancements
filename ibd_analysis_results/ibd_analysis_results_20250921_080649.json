@@ -1,0 +1,50 @@
+[
+  {
+    "symbol": "AAPL",
+    "status": "insufficient_data",
+    "bars": 62,
+    "error": "Only 62 bars available, need minimum 100"
+  },
+  {
+    "symbol": "ACM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: input array type is not double"
+  },
+  {
+    "symbol": "ADSK",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: input array type is not double"
+  },
+  {
+    "symbol": "AEIS",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: input array type is not double"
+  },
+  {
+    "symbol": "AEM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: input array type is not double"
+  },
+  {
+    "symbol": "AFRM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: input array type is not double"
+  },
+  {
+    "symbol": "NVDA",
+    "status": "insufficient_data",
+    "bars": 63,
+    "error": "Only 63 bars available, need minimum 100"
+  },
+  {
+    "symbol": "PLTR",
+    "status": "insufficient_data",
+    "bars": 1,
+    "error": "Only 1 bars available, need minimum 100"
+  }
+]

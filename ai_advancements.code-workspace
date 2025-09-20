@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../ai_engines"
+		},
+		{
+			"path": "../tensortrade"
+		},
+		{
+			"path": "../tws_api_project"
+		}
+	],
+	"settings": {}
+}

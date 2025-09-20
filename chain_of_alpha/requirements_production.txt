@@ -1,0 +1,58 @@
+# Production Chain-of-Alpha Requirements
+
+# Core dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+transformers>=4.35.0
+torch>=2.0.0
+accelerate>=0.24.0
+
+# IBKR Gateway integration (REQUIRED for production)
+ib-insync>=0.9.86
+
+# PostgreSQL database (REQUIRED for production)
+asyncpg>=0.29.0
+psycopg2-binary>=2.9.7
+
+# Technical Analysis (REQUIRED per CO-PILOT INSTRUCTIONS)
+TA-Lib>=0.4.28
+
+# Timezone handling
+pytz>=2023.3
+
+# Data manipulation and analysis
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Logging and utilities
+python-dotenv>=1.0.0
+
+# Optional but recommended
+jupyter>=1.0.0
+matplotlib>=3.7.0
+plotly>=5.17.0
+
+# For backtesting (if using vectorbt)
+vectorbt>=0.25.0
+
+# Installation Notes:
+# 
+# 1. TA-LIB Installation:
+#    Windows: Download from https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta-lib
+#    Linux/Mac: Install via package manager first, then pip
+# 
+# 2. IBKR Gateway Setup:
+#    - Install Trader Workstation (TWS) or IB Gateway
+#    - Enable API connections in TWS/Gateway settings
+#    - Configure socket port (default 4002 for Gateway)
+# 
+# 3. PostgreSQL Setup:
+#    - Production database already configured
+#    - Connection string in configuration
+#
+# 4. Production Compliance:
+#    - NO yfinance or fallback data sources
+#    - All market data through IBKR Gateway
+#    - PostgreSQL for all data persistence
+#    - TA-LIB for technical indicators
+#    - US Eastern timezone for all operations

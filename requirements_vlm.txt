@@ -1,0 +1,37 @@
+# VLM Training Requirements
+# Install with: pip install -r requirements_vlm.txt
+
+# Core ML libraries
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.21.0
+datasets>=2.8.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.2.0
+
+# Data fetching
+yfinance>=0.2.0
+requests>=2.28.0
+
+# Chart generation
+matplotlib>=3.6.0
+mplfinance>=0.12.9b7  # Latest available stable version
+Pillow>=9.0.0
+
+# Progress tracking
+tqdm>=4.64.0
+
+# Optional: GPU acceleration
+# Install based on your CUDA version
+# torch with CUDA: https://pytorch.org/get-started/locally/
+
+# Optional: Enhanced text generation
+openai>=1.0.0  # For LLM-augmented labeling
+pydantic>=2.5.3,<2.6.0  # Compatible version
+pydantic-core>=2.14.0,<2.15.0  # Compatible version
+
+# Development
+jupyter>=1.0.0  # For notebook-based experimentation

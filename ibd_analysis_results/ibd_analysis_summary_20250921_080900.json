@@ -1,0 +1,35 @@
+{
+  "analysis_timestamp": "20250921_080900",
+  "total_stocks": 8,
+  "successful_stocks": 5,
+  "failed_stocks": 3,
+  "performance_summary": {
+    "avg_total_return": 3.9052124829073316,
+    "avg_sharpe_ratio": 15.723172837589562,
+    "avg_win_rate": 1.9563633215996306,
+    "best_performer": "AFRM",
+    "worst_performer": "AEIS"
+  },
+  "top_performers": [
+    [
+      "AFRM",
+      12.587811754389591
+    ],
+    [
+      "AEM",
+      2.5422665669207403
+    ],
+    [
+      "ADSK",
+      1.6680493237275607
+    ],
+    [
+      "ACM",
+      1.4035511800195875
+    ],
+    [
+      "AEIS",
+      1.3243835894791784
+    ]
+  ]
+}

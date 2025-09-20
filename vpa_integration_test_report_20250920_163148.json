@@ -1,0 +1,106 @@
+{
+  "test_suite": "VPA Integration Test Suite",
+  "timestamp": "2025-09-20T16:31:48.022071",
+  "duration_seconds": 20.462738,
+  "overall_passed": false,
+  "test_results": {
+    "ibkr_connection": {
+      "passed": true,
+      "connection_time": "0.61s",
+      "server_version": 176,
+      "error": null
+    },
+    "data_retrieval": {
+      "passed": true,
+      "symbols_tested": 4,
+      "data_points_total": 624,
+      "data": {
+        "AAPL": "                             open    high     low   close     volume  average  barCount symbol\ndate                                                                                          \n2025-09-18 09:30:00-04:00  239.96  241.20  239.11  239.18  2013602.0  240.163      8600   AAPL\n2025-09-18 09:35:00-04:00  239.19  239.77  238.95  239.48   609018.0  239.395      3546   AAPL\n2025-09-18 09:40:00-04:00  239.49  239.70  238.06  238.08   685772.0  238.993      3838   AAPL\n2025-09-18 09:45:00-04:00  238.10  238.34  237.63  238.05   697709.0  237.952      4339   AAPL\n2025-09-18 09:50:00-04:00  238.05  238.42  237.92  238.06   480571.0  238.152      3078   AAPL\n...                           ...     ...     ...     ...        ...      ...       ...    ...\n2025-09-19 15:35:00-04:00  245.63  245.64  245.00  245.09   954988.0  245.280      5165   AAPL\n2025-09-19 15:40:00-04:00  245.09  245.10  244.81  244.84   756561.0  244.935      4232   AAPL\n2025-09-19 15:45:00-04:00  244.86  245.09  244.74  244.94   930280.0  244.907      5352   AAPL\n2025-09-19 15:50:00-04:00  244.96  246.19  244.74  245.60  3076222.0  245.516     19027   AAPL\n2025-09-19 15:55:00-04:00  245.61  245.63  244.85  245.29  3860110.0  245.474     22314   AAPL\n\n[156 rows x 8 columns]",
+        "MSFT": "                             open    high     low   close     volume  average  barCount symbol\ndate                                                                                          \n2025-09-18 09:30:00-04:00  511.49  511.49  507.68  509.18   615083.0  509.593      2198   MSFT\n2025-09-18 09:35:00-04:00  509.15  510.59  508.50  508.79   340618.0  509.181      1852   MSFT\n2025-09-18 09:40:00-04:00  508.81  509.21  508.17  508.18   170422.0  508.675       995   MSFT\n2025-09-18 09:45:00-04:00  508.20  509.39  507.66  509.38   177027.0  508.457      1062   MSFT\n2025-09-18 09:50:00-04:00  509.38  510.94  509.38  510.29   139381.0  510.355       840   MSFT\n...                           ...     ...     ...     ...        ...      ...       ...    ...\n2025-09-19 15:35:00-04:00  511.29  511.55  511.07  511.12   144682.0  511.298       875   MSFT\n2025-09-19 15:40:00-04:00  511.11  511.15  510.82  510.97   116622.0  511.048       913   MSFT\n2025-09-19 15:45:00-04:00  510.97  512.25  510.97  512.12   285970.0  511.578      1574   MSFT\n2025-09-19 15:50:00-04:00  512.14  517.77  512.14  516.97  1204491.0  516.088      7391   MSFT\n2025-09-19 15:55:00-04:00  516.89  519.30  516.71  518.00  3118110.0  517.876     16645   MSFT\n\n[156 rows x 8 columns]",
+        "GOOGL": "                             open    high     low   close     volume  average  barCount symbol\ndate                                                                                          \n2025-09-18 09:30:00-04:00  251.68  252.57  251.35  252.52  1373117.0  251.828      6419  GOOGL\n2025-09-18 09:35:00-04:00  252.52  253.99  252.22  253.02   826010.0  253.325      5334  GOOGL\n2025-09-18 09:40:00-04:00  253.06  253.20  251.63  252.00   618095.0  252.391      3961  GOOGL\n2025-09-18 09:45:00-04:00  252.01  252.40  251.10  252.28   528983.0  251.894      3337  GOOGL\n2025-09-18 09:50:00-04:00  252.29  252.92  252.13  252.47   442305.0  252.586      3144  GOOGL\n...                           ...     ...     ...     ...        ...      ...       ...    ...\n2025-09-19 15:35:00-04:00  255.56  255.96  255.47  255.88   303631.0  255.682      1970  GOOGL\n2025-09-19 15:40:00-04:00  255.86  256.00  255.53  255.97   298035.0  255.718      2070  GOOGL\n2025-09-19 15:45:00-04:00  255.98  256.00  255.77  255.89   336027.0  255.882      2388  GOOGL\n2025-09-19 15:50:00-04:00  255.89  255.96  253.94  254.57  1087551.0  255.188      8109  GOOGL\n2025-09-19 15:55:00-04:00  254.56  255.17  254.17  254.66  1901502.0  254.920     12160  GOOGL\n\n[156 rows x 8 columns]",
+        "TSLA": "                             open    high     low   close     volume  average  barCount symbol\ndate                                                                                          \n2025-09-18 09:30:00-04:00  428.87  431.55  426.55  429.89  2991764.0  429.076     12372   TSLA\n2025-09-18 09:35:00-04:00  429.81  430.09  423.67  423.79  2250743.0  426.595     10143   TSLA\n2025-09-18 09:40:00-04:00  423.74  426.23  421.95  425.65  2328915.0  424.216     10459   TSLA\n2025-09-18 09:45:00-04:00  425.61  427.24  424.50  427.05  1347615.0  425.972      6389   TSLA\n2025-09-18 09:50:00-04:00  427.02  428.63  426.88  428.00  1534718.0  427.837      7180   TSLA\n...                           ...     ...     ...     ...        ...      ...       ...    ...\n2025-09-19 15:35:00-04:00  426.00  426.24  425.27  425.34   473980.0  425.771      2558   TSLA\n2025-09-19 15:40:00-04:00  425.34  426.15  425.33  425.58   502591.0  425.696      2400   TSLA\n2025-09-19 15:45:00-04:00  425.59  425.96  425.24  425.89   412374.0  425.680      2303   TSLA\n2025-09-19 15:50:00-04:00  425.89  427.00  425.42  426.49  1071525.0  426.302      5592   TSLA\n2025-09-19 15:55:00-04:00  426.47  426.54  425.84  425.87  1338922.0  426.176      7160   TSLA\n\n[156 rows x 8 columns]"
+      },
+      "errors": []
+    },
+    "vpa_features": {
+      "passed": false,
+      "symbols_processed": 0,
+      "features_computed": 0,
+      "feature_validation": {
+        "AAPL": {
+          "passed": false,
+          "error": "VPA features contain 43 NaN values"
+        },
+        "MSFT": {
+          "passed": false,
+          "error": "VPA features contain 43 NaN values"
+        },
+        "GOOGL": {
+          "passed": false,
+          "error": "VPA features contain 43 NaN values"
+        },
+        "TSLA": {
+          "passed": false,
+          "error": "VPA features contain 43 NaN values"
+        }
+      },
+      "errors": [
+        "AAPL: VPA features contain 43 NaN values",
+        "MSFT: VPA features contain 43 NaN values",
+        "GOOGL: VPA features contain 43 NaN values",
+        "TSLA: VPA features contain 43 NaN values"
+      ]
+    },
+    "data_accessor": {
+      "passed": true,
+      "vpa_data_retrieved": true,
+      "data_points": 100,
+      "features_present": [
+        "vol_price_ratio",
+        "volume_imbalance",
+        "volume_sma_5",
+        "volume_sma_20",
+        "volume_ratio",
+        "volume_roc",
+        "vpt",
+        "nvi",
+        "pvi",
+        "volume_oscillator",
+        "volume_divergence",
+        "volume_climax",
+        "volume_spike",
+        "volume_absorption"
+      ],
+      "error": null
+    },
+    "multimodal_fusion": {
+      "passed": true,
+      "fusion_attempts": 2,
+      "successful_fusions": 2,
+      "vpa_weight_applied": false,
+      "errors": []
+    },
+    "trading_integration": {
+      "passed": true,
+      "trading_signals_generated": 2,
+      "positions_sized": 2,
+      "risk_management_applied": true,
+      "errors": []
+    },
+    "end_to_end": {
+      "passed": true,
+      "pipeline_steps_completed": 4,
+      "data_flow_validated": true,
+      "signal_generation_working": true,
+      "errors": []
+    }
+  },
+  "summary": {
+    "total_tests": 7,
+    "passed_tests": 6,
+    "failed_tests": 1,
+    "ibkr_data_validated": true,
+    "vpa_features_working": false,
+    "integration_complete": false
+  }
+}

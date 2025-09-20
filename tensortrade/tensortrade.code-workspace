@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../TradeAppComponents/ibkr_api"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "tensortrade"
+	}
+}

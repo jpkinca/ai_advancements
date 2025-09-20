@@ -1,0 +1,50 @@
+[
+  {
+    "symbol": "AAPL",
+    "status": "insufficient_data",
+    "bars": 62,
+    "error": "Only 62 bars available, need minimum 100"
+  },
+  {
+    "symbol": "ACM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: unsupported operand type(s) for -: 'decimal.Decimal' and 'float'"
+  },
+  {
+    "symbol": "ADSK",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: unsupported operand type(s) for -: 'decimal.Decimal' and 'float'"
+  },
+  {
+    "symbol": "AEIS",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: unsupported operand type(s) for -: 'decimal.Decimal' and 'float'"
+  },
+  {
+    "symbol": "AEM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: unsupported operand type(s) for -: 'decimal.Decimal' and 'float'"
+  },
+  {
+    "symbol": "AFRM",
+    "status": "training_failed",
+    "bars": 157,
+    "error": "Training failed: unsupported operand type(s) for -: 'decimal.Decimal' and 'float'"
+  },
+  {
+    "symbol": "NVDA",
+    "status": "insufficient_data",
+    "bars": 63,
+    "error": "Only 63 bars available, need minimum 100"
+  },
+  {
+    "symbol": "PLTR",
+    "status": "insufficient_data",
+    "bars": 1,
+    "error": "Only 1 bars available, need minimum 100"
+  }
+]

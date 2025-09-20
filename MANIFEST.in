@@ -1,0 +1,24 @@
+include README.md
+include LICENSE
+include requirements.txt
+include .env.example
+include setup.py
+include MANIFEST.in
+
+recursive-include docs *.md *.rst *.txt
+recursive-include faiss *.md *.json *.py
+recursive-include src *.py *.json *.yml *.yaml
+recursive-include tests *.py
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.so
+recursive-exclude * .DS_Store
+recursive-exclude * .git*
+recursive-exclude * *.log
+recursive-exclude * *.tmp
+
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude .DS_Store
+global-exclude *.so

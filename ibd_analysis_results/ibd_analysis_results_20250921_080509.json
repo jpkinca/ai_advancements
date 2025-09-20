@@ -1,0 +1,252 @@
+[
+  {
+    "symbol": "AEM",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ALAB",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "AMSC",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ANET",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ANIP",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "APH",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "APP",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ARQT",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ATAT",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "AU",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "AVDL",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "BZ",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "CDE",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "CLS",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "DAVE",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "EME",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "FIX",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "FUTU",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "GFI",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "HIMS",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "HOOD",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "IBKR",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "INOD",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "IREN",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "KGC",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "KNSA",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "LIF",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "MEDP",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "MIRM",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "MU",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "NVDA",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "NVMI",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "ONC",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "PAHC",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "PLTR",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RDDT",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RIGL",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RIOT",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RKLB",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RMBS",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "RYTM",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "SOFI",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "STNE",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "STOK",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "TBBK",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "TEM",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "TFPM",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "TVTX",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "WGS",
+    "status": "no_data",
+    "error": "No historical data available"
+  },
+  {
+    "symbol": "WLDN",
+    "status": "no_data",
+    "error": "No historical data available"
+  }
+]

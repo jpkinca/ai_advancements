@@ -1,0 +1,605 @@
+[
+  {
+    "symbol": "AAPL",
+    "status": "insufficient_data",
+    "bars": 62,
+    "error": "Only 62 bars available, need minimum 100"
+  },
+  {
+    "symbol": "ACM",
+    "status": "success",
+    "bars": 157,
+    "date_range": {
+      "start": "2022-09-16T00:00:00+00:00",
+      "end": "2025-09-08T00:00:00+00:00"
+    },
+    "training_metrics": {
+      "sweet_spot": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.8125,
+        "train_precision": 1.0,
+        "val_precision": 0.8181818181818182,
+        "train_recall": 1.0,
+        "val_recall": 0.9,
+        "train_f1": 1.0,
+        "val_f1": 0.8571428571428571
+      },
+      "danger_zone": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.045454545454545456,
+        "train_precision": 1.0,
+        "val_precision": 0.0,
+        "train_recall": 1.0,
+        "val_recall": 0.0,
+        "train_f1": 1.0,
+        "val_f1": 0.0
+      }
+    },
+    "backtest_results": {
+      "total_return": 1.4035511800195875,
+      "annualized_return": 3.086072356413191,
+      "sharpe_ratio": 8.462177520885682,
+      "max_drawdown": -0.08669650965591578,
+      "win_rate": 2.0232558139534884,
+      "total_trades": "43"
+    },
+    "recent_signals": [
+      {
+        "combined_signal": 0,
+        "position_size": 0.2290086169027181,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.2951160139534744,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.13555678992596723,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.042475309663746456,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.08427746176529068,
+        "confidence_score": 0.0
+      }
+    ],
+    "feature_importance": {
+      "sweet_spot": {
+        "rsi": "0.17930606",
+        "volatility_10": "0.16598994",
+        "trend_strength": "0.1475605",
+        "bb_squeeze": "0.1041522",
+        "price_change_10": "0.06772764",
+        "rsi_slope": "0.06073935",
+        "volume_trend": "0.042438716",
+        "bb_position": "0.034683656",
+        "momentum_divergence": "0.029480651",
+        "atr": "0.029165253",
+        "price_change_5": "0.024451423",
+        "price_change_20": "0.023259731",
+        "volume_ratio_5": "0.019697674",
+        "macd_hist": "0.019293834",
+        "bb_width": "0.016451761",
+        "macd": "0.0138538545",
+        "volume_ratio_20": "0.012273126",
+        "volatility_20": "0.008717567",
+        "macd_signal": "0.00075701316",
+        "macd_crossover": "0.0",
+        "hour_of_day": "0.0",
+        "day_of_week": "0.0"
+      },
+      "danger_zone": {
+        "downside_volatility": 0.14310318789245235,
+        "volatility_expansion": 0.12432100685917784,
+        "atr_ma_20": 0.11333208534553772,
+        "volume_ma_20": 0.08825203289051141,
+        "atr": 0.07284789327830365,
+        "rsi": 0.06509429656647693,
+        "price_volatility": 0.06356106786500759,
+        "volume_ratio": 0.05378929746872507,
+        "gap_size": 0.04746079651118203,
+        "price_acceleration": 0.04741378196549988,
+        "close_50_low": 0.04637645391435878,
+        "neg_momentum_5": 0.03927725003486923,
+        "high_volume_downside": 0.03293114906735275,
+        "neg_momentum_10": 0.02864487359558349,
+        "bb_upper_touch": 0.008676539494222441,
+        "bb_lower_touch": 0.007728499110475085,
+        "rsi_extreme_high": 0.005219035544201253,
+        "resistance_break": 0.0037843412499835583,
+        "rsi_divergence": 0.0034142680116706625,
+        "volume_surge": 0.0028151995664348855,
+        "support_break": 0.0011466299020710007,
+        "gap_down": 0.0008103138659024512,
+        "rsi_extreme_low": 0.0
+      }
+    }
+  },
+  {
+    "symbol": "ADSK",
+    "status": "success",
+    "bars": 157,
+    "date_range": {
+      "start": "2022-09-16T00:00:00+00:00",
+      "end": "2025-09-08T00:00:00+00:00"
+    },
+    "training_metrics": {
+      "sweet_spot": {
+        "train_accuracy": 0.992,
+        "val_accuracy": 0.53125,
+        "train_precision": 0.9857142857142858,
+        "val_precision": 0.4642857142857143,
+        "train_recall": 1.0,
+        "val_recall": 1.0,
+        "train_f1": 0.9928057553956835,
+        "val_f1": 0.6341463414634146
+      },
+      "danger_zone": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.6363636363636364,
+        "train_precision": 1.0,
+        "val_precision": 0.0,
+        "train_recall": 1.0,
+        "val_recall": 0.0,
+        "train_f1": 1.0,
+        "val_f1": 0.0
+      }
+    },
+    "backtest_results": {
+      "total_return": 1.6680493237275607,
+      "annualized_return": 3.831498565059378,
+      "sharpe_ratio": 7.9518322178578895,
+      "max_drawdown": -0.11453925345796769,
+      "win_rate": 1.323076923076923,
+      "total_trades": "65"
+    },
+    "recent_signals": [
+      {
+        "combined_signal": 1,
+        "position_size": 0.7599568549238342,
+        "confidence_score": 0.3799784274619171
+      },
+      {
+        "combined_signal": 2,
+        "position_size": 1.0,
+        "confidence_score": 1.23933201368666
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.1748659813701199,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.6606706984940554,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 1,
+        "position_size": 1.0,
+        "confidence_score": 0.5779167373370658
+      }
+    ],
+    "feature_importance": {
+      "sweet_spot": {
+        "macd": "0.23787414",
+        "bb_squeeze": "0.11738898",
+        "trend_strength": "0.099218994",
+        "volatility_20": "0.058322135",
+        "bb_width": "0.051909424",
+        "price_change_5": "0.04929261",
+        "rsi": "0.04903727",
+        "atr": "0.047752913",
+        "macd_hist": "0.0453035",
+        "volume_ratio_20": "0.04334266",
+        "price_change_10": "0.03503196",
+        "rsi_slope": "0.031775184",
+        "volatility_10": "0.02647",
+        "macd_signal": "0.02539119",
+        "momentum_divergence": "0.023051808",
+        "volume_trend": "0.017129678",
+        "volume_ratio_5": "0.016955903",
+        "price_change_20": "0.013392979",
+        "bb_position": "0.011358616",
+        "macd_crossover": "0.0",
+        "hour_of_day": "0.0",
+        "day_of_week": "0.0"
+      },
+      "danger_zone": {
+        "volume_ma_20": 0.13232823022638765,
+        "atr": 0.0954143880864222,
+        "rsi": 0.09510812908508487,
+        "volatility_expansion": 0.08509043212224573,
+        "atr_ma_20": 0.08136228767911118,
+        "downside_volatility": 0.0759369581898195,
+        "volume_ratio": 0.07198343234959913,
+        "price_volatility": 0.07129659397451202,
+        "gap_size": 0.06432113674076939,
+        "price_acceleration": 0.062301757117489934,
+        "neg_momentum_10": 0.0410513496413703,
+        "high_volume_downside": 0.03773591570638095,
+        "neg_momentum_5": 0.029997836654711917,
+        "close_50_low": 0.023982391298871558,
+        "bb_upper_touch": 0.007560203089343469,
+        "volume_surge": 0.006811212205485089,
+        "resistance_break": 0.005680861664096915,
+        "bb_lower_touch": 0.003893163771935554,
+        "rsi_divergence": 0.0036950227671453573,
+        "rsi_extreme_high": 0.002556489654299658,
+        "gap_down": 0.0018922079749174165,
+        "support_break": 0.0,
+        "rsi_extreme_low": 0.0
+      }
+    }
+  },
+  {
+    "symbol": "AEIS",
+    "status": "success",
+    "bars": 157,
+    "date_range": {
+      "start": "2022-09-16T00:00:00+00:00",
+      "end": "2025-09-08T00:00:00+00:00"
+    },
+    "training_metrics": {
+      "sweet_spot": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.5625,
+        "train_precision": 1.0,
+        "val_precision": 0.6666666666666666,
+        "train_recall": 1.0,
+        "val_recall": 0.4444444444444444,
+        "train_f1": 1.0,
+        "val_f1": 0.5333333333333333
+      },
+      "danger_zone": {
+        "train_accuracy": 0.9767441860465116,
+        "val_accuracy": 0.18181818181818182,
+        "train_precision": 1.0,
+        "val_precision": 0.0,
+        "train_recall": 0.9428571428571428,
+        "val_recall": 0.0,
+        "train_f1": 0.9705882352941176,
+        "val_f1": 0.0
+      }
+    },
+    "backtest_results": {
+      "total_return": 1.3243835894791784,
+      "annualized_return": 2.8722110281465563,
+      "sharpe_ratio": 4.602988805494023,
+      "max_drawdown": -0.2414209119181247,
+      "win_rate": 2.25,
+      "total_trades": "40"
+    },
+    "recent_signals": [
+      {
+        "combined_signal": 0,
+        "position_size": 0.01896300288236306,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.061403772778945404,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.0035544389635514626,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.006482135571097341,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.0020480341162935956,
+        "confidence_score": 0.0
+      }
+    ],
+    "feature_importance": {
+      "sweet_spot": {
+        "bb_width": "0.15886106",
+        "bb_position": "0.14897808",
+        "rsi": "0.14351162",
+        "bb_squeeze": "0.075590886",
+        "momentum_divergence": "0.060023557",
+        "macd": "0.0574454",
+        "macd_hist": "0.056103773",
+        "volatility_20": "0.05302596",
+        "price_change_5": "0.038163885",
+        "price_change_20": "0.038040556",
+        "price_change_10": "0.026756244",
+        "volume_ratio_5": "0.025239112",
+        "volatility_10": "0.024107408",
+        "trend_strength": "0.023401905",
+        "atr": "0.017568823",
+        "volume_ratio_20": "0.015105983",
+        "volume_trend": "0.01396151",
+        "rsi_slope": "0.013814889",
+        "macd_signal": "0.010299254",
+        "macd_crossover": "0.0",
+        "hour_of_day": "0.0",
+        "day_of_week": "0.0"
+      },
+      "danger_zone": {
+        "atr_ma_20": 0.12606191920306645,
+        "volume_ma_20": 0.10923113228883544,
+        "downside_volatility": 0.09492660305475449,
+        "rsi": 0.07829543780656843,
+        "volatility_expansion": 0.07518351298187023,
+        "gap_size": 0.07264991013140405,
+        "atr": 0.06255254305282892,
+        "price_volatility": 0.06155875453343224,
+        "neg_momentum_10": 0.05611328354508106,
+        "close_50_low": 0.052773761814389634,
+        "price_acceleration": 0.04644894078294015,
+        "volume_ratio": 0.043850751906449145,
+        "neg_momentum_5": 0.04314035452747374,
+        "high_volume_downside": 0.029551799659211,
+        "volume_surge": 0.027332998881807687,
+        "bb_upper_touch": 0.006004572661254962,
+        "gap_down": 0.005557012236544239,
+        "bb_lower_touch": 0.003420466701028221,
+        "rsi_divergence": 0.0027079793637757466,
+        "resistance_break": 0.001387516697315326,
+        "support_break": 0.0006574167324117483,
+        "rsi_extreme_low": 0.0005933314375568685,
+        "rsi_extreme_high": 0.0
+      }
+    }
+  },
+  {
+    "symbol": "AEM",
+    "status": "success",
+    "bars": 157,
+    "date_range": {
+      "start": "2022-09-16T00:00:00+00:00",
+      "end": "2025-09-08T00:00:00+00:00"
+    },
+    "training_metrics": {
+      "sweet_spot": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.625,
+        "train_precision": 1.0,
+        "val_precision": 0.8181818181818182,
+        "train_recall": 1.0,
+        "val_recall": 0.47368421052631576,
+        "train_f1": 1.0,
+        "val_f1": 0.6
+      },
+      "danger_zone": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.8636363636363636,
+        "train_precision": 1.0,
+        "val_precision": 0.0,
+        "train_recall": 1.0,
+        "val_recall": 0.0,
+        "train_f1": 1.0,
+        "val_f1": 0.0
+      }
+    },
+    "backtest_results": {
+      "total_return": 2.5422665669207403,
+      "annualized_return": 6.614631122049042,
+      "sharpe_ratio": 11.517571827476779,
+      "max_drawdown": -0.1320288683773737,
+      "win_rate": 1.435483870967742,
+      "total_trades": "62"
+    },
+    "recent_signals": [
+      {
+        "combined_signal": 0,
+        "position_size": 0.049317126600520365,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.05554887903934681,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.5342196828168718,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 1,
+        "position_size": 1.0,
+        "confidence_score": 0.5250513633578585
+      },
+      {
+        "combined_signal": 1,
+        "position_size": 1.0,
+        "confidence_score": 0.5016138225092398
+      }
+    ],
+    "feature_importance": {
+      "sweet_spot": {
+        "volatility_20": "0.20034266",
+        "rsi_slope": "0.09093608",
+        "macd_signal": "0.09066074",
+        "volatility_10": "0.06861952",
+        "macd": "0.066367954",
+        "bb_squeeze": "0.064255096",
+        "bb_width": "0.058077317",
+        "price_change_10": "0.0564441",
+        "trend_strength": "0.053149156",
+        "macd_hist": "0.048902623",
+        "price_change_5": "0.045123994",
+        "atr": "0.040280543",
+        "rsi": "0.036070127",
+        "price_change_20": "0.021646844",
+        "bb_position": "0.021497687",
+        "volume_ratio_20": "0.0133925425",
+        "volume_ratio_5": "0.011311012",
+        "volume_trend": "0.00986355",
+        "momentum_divergence": "0.0030584687",
+        "macd_crossover": "0.0",
+        "hour_of_day": "0.0",
+        "day_of_week": "0.0"
+      },
+      "danger_zone": {
+        "gap_size": 0.11462514719803144,
+        "volume_ma_20": 0.11061132345426422,
+        "atr_ma_20": 0.09647178822270107,
+        "volume_ratio": 0.08660507773816396,
+        "atr": 0.08136090621946715,
+        "downside_volatility": 0.07306938657362892,
+        "rsi": 0.07090354757018566,
+        "price_volatility": 0.06951083609973363,
+        "price_acceleration": 0.06806732191962275,
+        "high_volume_downside": 0.06585718109262013,
+        "volatility_expansion": 0.06435362662921308,
+        "neg_momentum_5": 0.028347642034580258,
+        "close_50_low": 0.02635419973640098,
+        "neg_momentum_10": 0.014652815205549443,
+        "resistance_break": 0.008474711403945208,
+        "rsi_divergence": 0.00817257690452779,
+        "bb_upper_touch": 0.005955205572998318,
+        "gap_down": 0.00303030787066677,
+        "rsi_extreme_high": 0.002362732168483088,
+        "volume_surge": 0.0010247569992219703,
+        "bb_lower_touch": 0.00018890938599409494,
+        "support_break": 0.0,
+        "rsi_extreme_low": 0.0
+      }
+    }
+  },
+  {
+    "symbol": "AFRM",
+    "status": "success",
+    "bars": 157,
+    "date_range": {
+      "start": "2022-09-16T00:00:00+00:00",
+      "end": "2025-09-08T00:00:00+00:00"
+    },
+    "training_metrics": {
+      "sweet_spot": {
+        "train_accuracy": 1.0,
+        "val_accuracy": 0.6875,
+        "train_precision": 1.0,
+        "val_precision": 0.7142857142857143,
+        "train_recall": 1.0,
+        "val_recall": 0.625,
+        "train_f1": 1.0,
+        "val_f1": 0.6666666666666666
+      },
+      "danger_zone": {
+        "train_accuracy": 0.9767441860465116,
+        "val_accuracy": 0.2727272727272727,
+        "train_precision": 0.9777777777777777,
+        "val_precision": 0.058823529411764705,
+        "train_recall": 0.9777777777777777,
+        "val_recall": 1.0,
+        "train_f1": 0.9777777777777777,
+        "val_f1": 0.1111111111111111
+      }
+    },
+    "backtest_results": {
+      "total_return": 12.587811754389591,
+      "annualized_return": 64.88904982973753,
+      "sharpe_ratio": 46.081293816233426,
+      "max_drawdown": -0.2527265628264074,
+      "win_rate": 2.75,
+      "total_trades": "32"
+    },
+    "recent_signals": [
+      {
+        "combined_signal": 0,
+        "position_size": 0.27772836009357965,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.12359610779862151,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.28157680371686955,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.6809669256526494,
+        "confidence_score": 0.0
+      },
+      {
+        "combined_signal": 0,
+        "position_size": 0.6305816373930042,
+        "confidence_score": 0.0
+      }
+    ],
+    "feature_importance": {
+      "sweet_spot": {
+        "macd_signal": "0.22708109",
+        "price_change_20": "0.12264035",
+        "macd": "0.08843819",
+        "macd_hist": "0.07682044",
+        "bb_width": "0.072676234",
+        "volume_trend": "0.07139494",
+        "price_change_5": "0.049132556",
+        "bb_position": "0.04455622",
+        "trend_strength": "0.038767226",
+        "price_change_10": "0.038753256",
+        "volatility_20": "0.03626055",
+        "volatility_10": "0.035786897",
+        "rsi": "0.028822081",
+        "volume_ratio_20": "0.02230339",
+        "atr": "0.016752055",
+        "momentum_divergence": "0.010627975",
+        "rsi_slope": "0.0100175785",
+        "volume_ratio_5": "0.009169028",
+        "macd_crossover": "0.0",
+        "bb_squeeze": "0.0",
+        "hour_of_day": "0.0",
+        "day_of_week": "0.0"
+      },
+      "danger_zone": {
+        "volume_ma_20": 0.10204679661576886,
+        "atr_ma_20": 0.10110292033556992,
+        "atr": 0.0818659092351319,
+        "rsi": 0.07848933397642549,
+        "volatility_expansion": 0.0779403731752792,
+        "downside_volatility": 0.077094365809276,
+        "price_acceleration": 0.06683116238354884,
+        "gap_size": 0.05882873857600605,
+        "volume_ratio": 0.05783726593404115,
+        "neg_momentum_5": 0.054852128763452475,
+        "close_50_low": 0.05197852505650569,
+        "neg_momentum_10": 0.05168021907311086,
+        "price_volatility": 0.05001005785158415,
+        "high_volume_downside": 0.02383171704656079,
+        "bb_lower_touch": 0.022004749454699844,
+        "resistance_break": 0.015388741241952695,
+        "gap_down": 0.008194840953062327,
+        "bb_upper_touch": 0.007796695353706472,
+        "rsi_divergence": 0.004837602640590011,
+        "rsi_extreme_high": 0.004336670273699006,
+        "volume_surge": 0.0030511862500281917,
+        "support_break": 0.0,
+        "rsi_extreme_low": 0.0
+      }
+    }
+  },
+  {
+    "symbol": "NVDA",
+    "status": "insufficient_data",
+    "bars": 63,
+    "error": "Only 63 bars available, need minimum 100"
+  },
+  {
+    "symbol": "PLTR",
+    "status": "insufficient_data",
+    "bars": 1,
+    "error": "Only 1 bars available, need minimum 100"
+  }
+]
