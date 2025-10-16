@@ -204,6 +204,10 @@ class FactorPortfolioConstructor:
 
         # Read performance data
         perf_df = pd.read_csv(latest_csv)
+        # Ensure numeric types for metrics
+        for col in ['sharpe_ratio', 'annual_return', 'max_drawdown', 'win_rate', 'total_trades']:
+            if col in perf_df.columns:
+                perf_df[col] = pd.to_numeric(perf_df[col], errors='coerce')
         perf_df.set_index('factor_id', inplace=True)
 
         print("\n=== FACTOR PERFORMANCE SUMMARY ===")
@@ -220,8 +224,8 @@ class FactorPortfolioConstructor:
 
             for factor in remaining_factors:
                 if factor in perf_df.index:
-                    sharpe = perf_df.loc[factor, 'sharpe_ratio']
-                    if sharpe > min_sharpe and sharpe > best_sharpe:
+                    sharpe = float(perf_df.loc[factor, 'sharpe_ratio'])
+                    if sharpe > float(min_sharpe) and sharpe > float(best_sharpe):
                         best_sharpe = sharpe
                         best_factor = factor
 
@@ -231,8 +235,8 @@ class FactorPortfolioConstructor:
             # Check correlation with already selected factors
             is_uncorrelated = True
             for selected_factor in selected:
-                corr = abs(corr_matrix.loc[best_factor, selected_factor])
-                if corr > max_correlation:
+                corr = float(corr_matrix.loc[best_factor, selected_factor])
+                if abs(corr) > float(max_correlation):
                     is_uncorrelated = False
                     break
 
@@ -261,7 +265,8 @@ class FactorPortfolioConstructor:
             is_uncorrelated = True
 
             for selected_factor in selected:
-                if abs(corr_matrix.loc[factor, selected_factor]) > max_correlation:
+                corr = float(corr_matrix.loc[factor, selected_factor])
+                if abs(corr) > float(max_correlation):
                     is_uncorrelated = False
                     break
 
@@ -315,13 +320,15 @@ class FactorPortfolioConstructor:
             return {}
 
         # Basic metrics
-        total_return = (1 + returns).prod() - 1
-        annual_return = (1 + total_return) ** (252 / len(returns)) - 1
-        volatility = returns.std() * np.sqrt(252)
+        # Ensure returns is numeric Series
+        returns = pd.to_numeric(returns, errors='coerce').fillna(0.0)
+        total_return = (1.0 + returns).prod() - 1.0
+        annual_return = float((1.0 + total_return) ** (252.0 / max(1, len(returns))) - 1.0)
+        volatility = float(returns.std() * np.sqrt(252.0))
         sharpe_ratio = annual_return / volatility if volatility > 0 else 0
 
         # Max drawdown
-        cumulative = (1 + returns).cumprod()
+    cumulative = (1.0 + returns).cumprod()
         running_max = cumulative.expanding().max()
         drawdown = (cumulative - running_max) / running_max
         max_drawdown = drawdown.min()
