@@ -1,0 +1,36 @@
+{
+  "factors": [],
+  "evaluation": {
+    "summary": {
+      "total_factors": 0,
+      "message": "No factors to evaluate"
+    },
+    "performance_analysis": {},
+    "factor_characteristics": {
+      "complexity_analysis": {},
+      "feature_usage": {
+        "total_unique_features": 0,
+        "most_used_features": [],
+        "feature_usage_distribution": {}
+      },
+      "correlation_analysis": {
+        "message": "Insufficient data for correlation analysis"
+      }
+    },
+    "robustness_check": {
+      "consistency_check": {
+        "message": "Need at least 2 factors for consistency check"
+      },
+      "sensitivity_analysis": {
+        "message": "Sensitivity analysis not fully implemented in MVP",
+        "recommendation": "Consider testing factors across different time periods and market regimes"
+      }
+    },
+    "recommendations": [
+      "No factors generated - check pipeline configuration"
+    ],
+    "evaluation_time": "2025-10-16T20:07:55.883513"
+  },
+  "export_time": "2025-10-16T20:07:55.883552",
+  "version": "1.0"
+}

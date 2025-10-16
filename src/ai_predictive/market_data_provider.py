@@ -269,7 +269,8 @@ class YFinanceDataProvider(BaseDataProvider):
                         (symbol, timestamp, timeframe, open_price, high_price, 
                          low_price, close_price, volume)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                    ''', (
+                    '''
+        return data
                         data.symbol,
                         data.timestamp.isoformat(),
                         data.timeframe.value,

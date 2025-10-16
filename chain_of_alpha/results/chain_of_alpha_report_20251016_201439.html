@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chain-of-Alpha Results Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background-color: #f0f0f0; padding: 20px; border-radius: 5px; }
+        .summary { background-color: #e8f4f8; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .factor { background-color: #f9f9f9; padding: 10px; margin: 5px 0; border-radius: 3px; }
+        .metrics { display: flex; flex-wrap: wrap; }
+        .metric { background-color: #fff; padding: 10px; margin: 5px; border-radius: 3px; min-width: 150px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Chain-of-Alpha Alpha Discovery Results</h1>
+        <p>Report generated on 2025-10-16 20:14:39</p>
+    </div>
+
+    <div class="summary">
+        <h2>Summary Statistics</h2>
+        <div class="metrics">
+            <div class="metric">
+                <strong>Total Factors:</strong> 10
+            </div>
+            <div class="metric">
+                <strong>Average Sharpe:</strong> -0.154
+            </div>
+            <div class="metric">
+                <strong>Average Return:</strong> -1.9%
+            </div>
+            <div class="metric">
+                <strong>Positive Sharpe:</strong> 1
+            </div>
+        </div>
+    </div>
+
+    <h2>Top Performing Factors</h2>
+    <table>
+        <tr>
+            <th>Factor ID</th>
+            <th>Expression</th>
+            <th>Sharpe Ratio</th>
+            <th>Annual Return</th>
+            <th>Max Drawdown</th>
+            <th>Win Rate</th>
+        </tr>
+
+        <tr>
+            <td>factor_5</td>
+            <td><code>((df['sma_5'] / df['sma_50'] - 1) * (df['momentum_...</code></td>
+            <td>0.568</td>
+            <td>14.3%</td>
+            <td>-27.9%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_1</td>
+            <td><code>((df['momentum_5'] - df['momentum_20']) / df['vola...</code></td>
+            <td>0.421</td>
+            <td>12.3%</td>
+            <td>-23.7%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_7</td>
+            <td><code>((df['momentum_20'] / df['sma_50']) * (df['rsi'] -...</code></td>
+            <td>0.297</td>
+            <td>8.8%</td>
+            <td>-33.5%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_2</td>
+            <td><code>((df['close'] / df['sma_20'] - 1) * (df['volume_ra...</code></td>
+            <td>-0.157</td>
+            <td>-1.6%</td>
+            <td>-37.2%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_10</td>
+            <td><code>((df['volume_ratio'] - 1) * (df['close'] / df['sma...</code></td>
+            <td>-0.157</td>
+            <td>-1.6%</td>
+            <td>-37.2%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_8</td>
+            <td><code>((df['volume_ratio'] * df['momentum_20']) / df['vo...</code></td>
+            <td>-0.166</td>
+            <td>-1.4%</td>
+            <td>-33.5%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_9</td>
+            <td><code>((df['momentum_5'] * (1 - df['rsi'] / 100)) / df['...</code></td>
+            <td>-0.312</td>
+            <td>-5.8%</td>
+            <td>-30.3%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_4</td>
+            <td><code>((df['volume_ratio'] - 1) * (df['high'] / df['low'...</code></td>
+            <td>-0.586</td>
+            <td>-10.5%</td>
+            <td>-39.1%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_3</td>
+            <td><code>(df['momentum_5'] / df['volatility_20']).groupby(d...</code></td>
+            <td>-0.722</td>
+            <td>-16.6%</td>
+            <td>-46.1%</td>
+            <td>0.0%</td>
+        </tr>
+
+        <tr>
+            <td>factor_6</td>
+            <td><code>(df['momentum_5'] / df['volatility_20']).groupby(d...</code></td>
+            <td>-0.722</td>
+            <td>-16.6%</td>
+            <td>-46.1%</td>
+            <td>0.0%</td>
+        </tr>
+
+    </table>
+
+    <h2>Recommendations</h2>
+    <ul>
+        <li>Average Sharpe ratio is low - factors may need optimization or different market data</li>
+        <li>Validate top-performing factors on out-of-sample data</li>
+        <li>Consider ensemble methods combining multiple factors</li>
+        <li>Implement proper risk management before live trading</li>
+        <li>Monitor factor performance over time for decay</li>
+
+    </ul>
+</body>
+</html>

@@ -168,7 +168,7 @@ def next_market_open(dt: datetime = None) -> datetime:
     next_open = dt.replace(hour=9, minute=30, second=0, microsecond=0)
     
     # If current time is past market open today, or it's weekend, move to next business day
-    if dt.time() >= MARKET_OPEN_TIME and dt.weekday() = 5:
+    if dt.time() >= MARKET_OPEN_TIME and dt.weekday() < 5:
         next_open = next_open.replace(day=next_open.day + 1)
     
     return next_open

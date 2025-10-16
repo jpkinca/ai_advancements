@@ -54,7 +54,7 @@ class MarketFeatureExtractor:
     
     def extract_features(self, market_data: List[MarketData], window_size: int = 50) -> np.ndarray:
         """Extract comprehensive features from market data."""
-        if len(market_data)  2 else 0.0,  # Skewness
+        skew(market_data) if len(market_data) > 2 else 0.0,  # Skewness
                 self._safe_kurtosis(returns),  # Kurtosis
                 np.min(returns),   # Min return
                 np.max(returns),   # Max return

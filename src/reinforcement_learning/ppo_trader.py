@@ -146,7 +146,12 @@ class PPOTrader:
             features.extend([100.0, 0.0, 0.01, 0.5])
         
         # Pad or truncate to input_size
-        while len(features)  Dict[str, Any]:
+        while len(features) < self.input_size:
+            features.append(0.0)
+        
+        return np.array(features[:self.input_size])
+    
+    def train_agent(self, market_data: List[Dict[str, Any]], episodes: int = 1000) -> Dict[str, Any]:
         """
         Train the PPO agent on market data.
         
@@ -177,7 +182,7 @@ class PPOTrader:
                     action_probs, value = self.network(features_tensor)
                 
                 # Calculate reward (simplified)
-                if i  0:  # BUY and price goes up
+                if action == 0 and price_change > 0:  # BUY and price goes up
                         reward = price_change * 100
                     elif action == 1 and price_change  List[Dict[str, Any]]:
         """

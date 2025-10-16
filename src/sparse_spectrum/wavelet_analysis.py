@@ -57,7 +57,7 @@ class WaveletAnalyzer:
     
     def decompose_price_series(self, market_data: List[MarketData]) -> Dict[str, Any]:
         """Decompose price series using wavelet transform."""
-        if len(market_data) = self.config.min_energy_ratio]
+        significant_coeffs = coeffs[np.abs(coeffs) >= self.config.min_energy_ratio]
         }
         
         logger.info(f"[SUCCESS] Wavelet decomposition completed: {len(components)} components, {len(decomposition_result['significant_components'])} significant")

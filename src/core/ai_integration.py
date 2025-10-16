@@ -339,7 +339,7 @@ class AITradingIntegration:
         
         # Analyze each symbol
         for symbol, data_points in symbol_data.items():
-            if len(data_points)  List[int]:
+            if len(data_points) < self.min_data_points:
         """Generate trading signals from spectrum analysis and store them."""
         full_model_name = f"{model_name}_{analysis_type}"
         

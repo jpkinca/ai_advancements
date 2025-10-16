@@ -100,7 +100,7 @@ class TradingEnvironment(gym.Env):
     
     def _calculate_features(self) -> None:
         """Calculate technical indicators and features."""
-        if len(self.prices)  np.ndarray:
+        if len(self.prices) < self.min_history_size:
         """Calculate Simple Moving Average."""
         sma = np.convolve(data, np.ones(window)/window, mode='valid')
         # Pad the beginning with the first calculated value

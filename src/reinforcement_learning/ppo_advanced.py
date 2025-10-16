@@ -194,7 +194,7 @@ class AdvancedTradingEnvironment(gym.Env):
     
     def _execute_trade(self, position_change: float, stop_loss_pct: float, take_profit_pct: float, price: float) -> float:
         """Execute trade with transaction costs."""
-        if abs(position_change)  0.001:
+        if abs(position_change) > 0.001:
             self.entry_price = price
             self.total_trades += 1
         

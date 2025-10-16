@@ -19,6 +19,13 @@ import pandas as pd
 import numpy as np
 import warnings
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv not installed, continue without it
+
 # Suppress warnings for cleaner output
 warnings.filterwarnings('ignore')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

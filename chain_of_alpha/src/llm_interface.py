@@ -20,7 +20,16 @@ class LLMInterface:
     def __init__(self, config: Dict[str, Any]):
         self.config = config
         self.model_name = config.get('llm_model', 'llama-3-8b')
-        self.api_key = config.get('llm_api_key')
+        
+        # Try to get API key from config or environment
+        import os
+        self.api_key = (
+            config.get('llm_api_key') or 
+            os.getenv('GROK_API_KEY') or 
+            os.getenv('OPENAI_API_KEY') or
+            os.getenv('LLM_API_KEY')
+        )
+        
         self.temperature = config.get('temperature', 0.7)
         self.max_tokens = config.get('max_tokens', 1000)
 
@@ -226,16 +235,36 @@ Example: df['close'] / df['sma_20'] - 1  (NOT: close / sma_20 - 1)"""
         return f"<|system|>\n{system_prompt}\n<|user|>\n{prompt}{context_str}\n<|assistant|>"
 
 class GrokClient(BaseLLMClient):
-    """Client for Grok API"""
+    """Client for Grok API with structured factor generation"""
+
+    def __init__(self, config: Dict[str, Any]):
+        super().__init__(config)
+        self.factor_schema = {
+            "type": "object",
+            "properties": {
+                "factor_expression": {"type": "string", "description": "Valid pandas expression using df['column'] syntax"},
+                "explanation": {"type": "string", "description": "Economic intuition behind the factor"},
+                "expected_signal": {"type": "string", "enum": ["bullish", "bearish", "neutral"]},
+                "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+                "category": {"type": "string", "enum": ["momentum", "mean_reversion", "volatility", "volume", "cross_sectional", "fundamental"]}
+            },
+            "required": ["factor_expression", "explanation", "expected_signal", "confidence", "category"]
+        }
 
     def generate_response(self, prompt: str, context: Optional[Dict[str, Any]] = None) -> str:
-        """Generate response using Grok API"""
+        """Generate response using Grok API with structured prompting"""
         try:
             import requests
+            import json
 
-            api_key = self.config.get('llm_api_key')
+            import os
+            api_key = (
+                self.config.get('llm_api_key') or 
+                os.getenv('GROK_API_KEY') or
+                os.getenv('LLM_API_KEY')
+            )
             if not api_key:
-                raise ValueError("Grok API key not provided")
+                raise ValueError("Grok API key not provided. Set 'llm_api_key' in config or environment variable GROK_API_KEY")
 
             url = "https://api.x.ai/v1/chat/completions"
 
@@ -244,10 +273,46 @@ class GrokClient(BaseLLMClient):
                 "Content-Type": "application/json"
             }
 
+            # Enhanced system prompt for finance-specific reasoning
+            system_prompt = """You are a world-class quantitative analyst specializing in systematic alpha factor generation. You have deep expertise in:
+
+1. Market microstructure and behavioral finance
+2. Cross-sectional and time-series momentum effects  
+3. Mean reversion patterns and volatility clustering
+4. Volume-price relationships and market regime identification
+5. Risk factor neutralization and portfolio construction
+
+CRITICAL REQUIREMENTS:
+- Generate factors using pandas DataFrame syntax with df['column_name']
+- Ensure factors are market-neutral (remove beta exposure)
+- Focus on non-obvious relationships that capture behavioral biases
+- Consider market regimes (trending, ranging, volatile, calm)
+- Validate expressions are executable and meaningful
+
+Available columns: {columns}
+Current market context: {market_context}
+
+Response Format: Return a JSON object matching this schema:
+{schema}"""
+
+            # Build context-aware prompt
+            if context and 'data_analysis' in context:
+                columns_str = ", ".join(context['data_analysis'].get('columns', []))
+                market_context = f"Period: {context['data_analysis'].get('date_range', {}).get('start', 'Unknown')} to {context['data_analysis'].get('date_range', {}).get('end', 'Unknown')}"
+            else:
+                columns_str = "df['close'], df['open'], df['high'], df['low'], df['volume'], df['returns'], df['log_returns'], df['sma_5'], df['sma_20'], df['rsi'], df['macd']"
+                market_context = "Multi-year historical data across various market regimes"
+
+            formatted_system = system_prompt.format(
+                columns=columns_str,
+                market_context=market_context,
+                schema=json.dumps(self.factor_schema, indent=2)
+            )
+
             messages = [
                 {
-                    "role": "system",
-                    "content": "You are an expert quantitative analyst specializing in alpha factor generation."
+                    "role": "system", 
+                    "content": formatted_system
                 },
                 {
                     "role": "user",
@@ -256,21 +321,51 @@ class GrokClient(BaseLLMClient):
             ]
 
             data = {
-                "model": "grok-beta",
+                "model": "grok-3",
                 "messages": messages,
                 "temperature": self.config.get('temperature', 0.7),
-                "max_tokens": self.config.get('max_tokens', 1000)
+                "max_tokens": self.config.get('max_tokens', 1500),
+                "response_format": {"type": "json_object"} if "json" in prompt.lower() else None
             }
 
-            response = requests.post(url, headers=headers, json=data, timeout=30)
+            logger.info(f"Sending request to Grok API with {len(prompt)} char prompt")
+            response = requests.post(url, headers=headers, json=data, timeout=60)
             response.raise_for_status()
 
             result = response.json()
-            return result['choices'][0]['message']['content']
+            content = result['choices'][0]['message']['content']
+            
+            # Try to parse as JSON for structured factors
+            try:
+                json_content = json.loads(content)
+                logger.info("Successfully parsed structured JSON response from Grok")
+                return self._format_structured_response(json_content)
+            except json.JSONDecodeError:
+                logger.warning("Grok response not valid JSON, returning raw content")
+                return content
 
         except Exception as e:
             logger.error(f"Grok API call failed: {e}")
             raise
+
+    def _format_structured_response(self, json_response: dict) -> str:
+        """Format structured JSON response back to expected string format"""
+        try:
+            factor_expr = json_response.get('factor_expression', '')
+            explanation = json_response.get('explanation', '')
+            confidence = json_response.get('confidence', 0)
+            category = json_response.get('category', 'unknown')
+            
+            formatted = f"""FACTOR: {factor_expr}
+EXPLANATION: {explanation}
+CONFIDENCE: {confidence:.2f}
+CATEGORY: {category}"""
+            
+            return formatted
+            
+        except Exception as e:
+            logger.error(f"Error formatting structured response: {e}")
+            return f"FACTOR: {json_response.get('factor_expression', 'Error parsing factor')}\nEXPLANATION: {json_response.get('explanation', 'Error parsing explanation')}"
 
 class OpenAIClient(BaseLLMClient):
     """Client for OpenAI API"""

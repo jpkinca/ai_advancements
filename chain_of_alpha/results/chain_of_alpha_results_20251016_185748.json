@@ -1,0 +1,1464 @@
+{
+  "factors": [
+    {
+      "expression": "df['close'] / df['close'].rolling(20).mean() - 1",
+      "explanation": "Price deviation from 20-day mean",
+      "id": "factor_1",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:01.925960",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22    0.002814\n        2023-12-26    0.003558\n        2023-12-27    0.003138\n        2023-12-28    0.006864\n        2023-12-29    0.009292\nName: close, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 0.01998238875852656,
+        "std": 0.03677159317380107,
+        "min": -0.06691989291240719,
+        "max": 0.20268616559944386,
+        "median": 0.02008081896544356,
+        "skewness": 0.3757838910576759,
+        "kurtosis": 1.1791723278797202,
+        "missing_pct": 3.8,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.442090",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B212E99940> of shape (231,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22B5C4050> of shape (231,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22D716610> of shape (30,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22D715050> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22B59D710> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.010452001963616932,
+          "annual_return": 0.01656506103705513,
+          "annual_volatility": 0.12416635951535311,
+          "sharpe_ratio": -0.02766400638910689,
+          "max_drawdown": -0.10894163891921516,
+          "value_at_risk_95": -0.008843620520028354,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.3818805454171976,
+          "alpha": -0.3653154843801425,
+          "sortino_ratio": -0.033576878311442196,
+          "calmar_ratio": 0.15205445045065666
+        },
+        "backtest_time": "2025-10-16T18:57:37.744559"
+      }
+    },
+    {
+      "expression": "df['close'] / df['close'].rolling(20).mean() - 1",
+      "explanation": "Price deviation from 20-day mean",
+      "id": "factor_2",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:02.927029",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22    0.002814\n        2023-12-26    0.003558\n        2023-12-27    0.003138\n        2023-12-28    0.006864\n        2023-12-29    0.009292\nName: close, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 0.01998238875852656,
+        "std": 0.03677159317380107,
+        "min": -0.06691989291240719,
+        "max": 0.20268616559944386,
+        "median": 0.02008081896544356,
+        "skewness": 0.3757838910576759,
+        "kurtosis": 1.1791723278797202,
+        "missing_pct": 3.8,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.444035",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22CCA7E50> of shape (231,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22D5B56D0> of shape (231,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F264E70> of shape (30,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F264ED0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F2671B0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.010452001963616932,
+          "annual_return": 0.01656506103705513,
+          "annual_volatility": 0.12416635951535311,
+          "sharpe_ratio": -0.02766400638910689,
+          "max_drawdown": -0.10894163891921516,
+          "value_at_risk_95": -0.008843620520028354,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.3818805454171976,
+          "alpha": -0.3653154843801425,
+          "sortino_ratio": -0.033576878311442196,
+          "calmar_ratio": 0.15205445045065666
+        },
+        "backtest_time": "2025-10-16T18:57:37.767518"
+      }
+    },
+    {
+      "expression": "(df['close'] - df['open']) / df['open']",
+      "explanation": "Intraday gap return",
+      "id": "factor_3",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:03.928583",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03   -0.039991\n        2023-01-04   -0.004177\n        2023-01-05   -0.016597\n        2023-01-06    0.028648\n        2023-01-09   -0.002453\n                        ...   \nMSFT    2023-12-22    0.002408\n        2023-12-26   -0.000907\n        2023-12-27    0.001017\n        2023-12-28   -0.000240\n        2023-12-29    0.000106\nLength: 500, dtype: float64",
+      "stats": {
+        "mean": 0.0014151356405587533,
+        "std": 0.011944752413892593,
+        "min": -0.03999078241702122,
+        "max": 0.043707365223649486,
+        "median": 0.0011371661830089953,
+        "skewness": -0.020347867827749402,
+        "kurtosis": 0.9266854707740433,
+        "missing_pct": 0.0,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.445739",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F20D490> of shape (250,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22D4071D0> of shape (250,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22D445890> of shape (108,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F431EF0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F432130> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.09105888896218621,
+          "annual_return": -0.13011430237971588,
+          "annual_volatility": 0.1501173419787195,
+          "sharpe_ratio": -0.9999797518463652,
+          "max_drawdown": -0.23025620937093438,
+          "value_at_risk_95": -0.011629835095966393,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5578778693646154,
+          "alpha": -0.6879921717443312,
+          "sortino_ratio": -1.396708724508066,
+          "calmar_ratio": -0.5650848797311107
+        },
+        "backtest_time": "2025-10-16T18:57:37.798479"
+      }
+    },
+    {
+      "expression": "df['close'] / df['close'].shift(5) - 1",
+      "explanation": "5-day price momentum factor",
+      "id": "factor_4",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:04.930311",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22    0.010385\n        2023-12-26    0.005394\n        2023-12-27    0.002170\n        2023-12-28    0.012574\n        2023-12-29    0.006693\nName: close, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 0.011556226407498775,
+        "std": 0.03425243540779574,
+        "min": -0.08959015807616277,
+        "max": 0.221117438957382,
+        "median": 0.01056106216399555,
+        "skewness": 0.9486643634454589,
+        "kurtosis": 4.721457773270952,
+        "missing_pct": 1.0,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.447548",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F20D610> of shape (245,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22F894A50> of shape (245,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22D662DF0> of shape (44,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22D6638D0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22D6603F0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.05375595072155065,
+          "annual_return": 0.08113024989308615,
+          "annual_volatility": 0.14387051015297167,
+          "sharpe_ratio": 0.4248977071679862,
+          "max_drawdown": -0.14178403563711084,
+          "value_at_risk_95": -0.011571961285947221,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5012817031319508,
+          "alpha": -0.4201514532388646,
+          "sortino_ratio": 0.5359011153349019,
+          "calmar_ratio": 0.5722100483917313
+        },
+        "backtest_time": "2025-10-16T18:57:37.823766"
+      }
+    },
+    {
+      "expression": "df['returns'].rolling(20).skew()",
+      "explanation": "20-day return distribution skewness",
+      "id": "factor_5",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:05.931343",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22   -0.658449\n        2023-12-26   -0.617904\n        2023-12-27   -0.574813\n        2023-12-28   -0.794209\n        2023-12-29   -0.822828\nName: returns, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 0.11354983137810275,
+        "std": 0.8355177777064917,
+        "min": -2.024120104451366,
+        "max": 2.3961529054862014,
+        "median": 0.06467354138432592,
+        "skewness": 0.539872317897697,
+        "kurtosis": 0.7936367467532937,
+        "missing_pct": 8.0,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.451220",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F20D310> of shape (230,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22F9356D0> of shape (230,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F956C70> of shape (9,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F956910> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F956670> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.1129374171610396,
+          "annual_return": 0.18507831090386695,
+          "annual_volatility": 0.09928593152742639,
+          "sharpe_ratio": 1.662655608546779,
+          "max_drawdown": -0.03402856857137382,
+          "value_at_risk_95": -0.006039988425449691,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.3712710600510398,
+          "alpha": -0.18619274914717288,
+          "sortino_ratio": 2.634868158940073,
+          "calmar_ratio": 5.438909677192892
+        },
+        "backtest_time": "2025-10-16T18:57:37.848331"
+      }
+    },
+    {
+      "expression": "df['close'] / df['close'].rolling(20).mean() - 1",
+      "explanation": "Price deviation from 20-day mean",
+      "id": "factor_6",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:06.932459",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22    0.002814\n        2023-12-26    0.003558\n        2023-12-27    0.003138\n        2023-12-28    0.006864\n        2023-12-29    0.009292\nName: close, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 0.01998238875852656,
+        "std": 0.03677159317380107,
+        "min": -0.06691989291240719,
+        "max": 0.20268616559944386,
+        "median": 0.02008081896544356,
+        "skewness": 0.3757838910576759,
+        "kurtosis": 1.1791723278797202,
+        "missing_pct": 3.8,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.454716",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F1ACB90> of shape (231,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22EAD5150> of shape (231,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F5C1C50> of shape (30,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F5C1950> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F5C16B0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.010452001963616932,
+          "annual_return": 0.01656506103705513,
+          "annual_volatility": 0.12416635951535311,
+          "sharpe_ratio": -0.02766400638910689,
+          "max_drawdown": -0.10894163891921516,
+          "value_at_risk_95": -0.008843620520028354,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.3818805454171976,
+          "alpha": -0.3653154843801425,
+          "sortino_ratio": -0.033576878311442196,
+          "calmar_ratio": 0.15205445045065666
+        },
+        "backtest_time": "2025-10-16T18:57:37.878939"
+      }
+    },
+    {
+      "expression": "df['volume'] / df['volume'].shift(5)",
+      "explanation": "5-day volume growth ratio",
+      "id": "factor_7",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:07.934162",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03         NaN\n        2023-01-04         NaN\n        2023-01-05         NaN\n        2023-01-06         NaN\n        2023-01-09         NaN\n                        ...   \nMSFT    2023-12-22    0.217924\n        2023-12-26    0.581258\n        2023-12-27    0.723433\n        2023-12-28    0.544407\n        2023-12-29    1.057759\nName: volume, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 1.0602120400923116,
+        "std": 0.4515525871971534,
+        "min": 0.21792355128448465,
+        "max": 3.895045250664867,
+        "median": 0.9961142117325962,
+        "skewness": 2.031086395184807,
+        "kurtosis": 7.318195373217522,
+        "missing_pct": 1.0,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.456739",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22D523950> of shape (245,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22EB41AD0> of shape (245,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F5FDE30> of shape (58,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F5FDAD0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F5FD830> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.1240201799155786,
+          "annual_return": -0.17902875291681197,
+          "annual_volatility": 0.1309056000004378,
+          "sharpe_ratio": -1.5203990731958474,
+          "max_drawdown": -0.16703458551201,
+          "value_at_risk_95": -0.010060585921702881,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5012817031319508,
+          "alpha": -0.6803104560487627,
+          "sortino_ratio": -1.5379835014011691,
+          "calmar_ratio": -1.0718064906620166
+        },
+        "backtest_time": "2025-10-16T18:57:37.904416"
+      }
+    },
+    {
+      "expression": "df['returns'].shift(1) * df['returns']",
+      "explanation": "Return serial correlation",
+      "id": "factor_8",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:08.935589",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03             NaN\n        2023-01-04             NaN\n        2023-01-05   -1.093801e-04\n        2023-01-06   -3.901923e-04\n        2023-01-09    1.504552e-04\n                          ...     \nMSFT    2023-12-22    2.193626e-05\n        2023-12-26    5.944666e-07\n        2023-12-27   -3.362132e-07\n        2023-12-28   -5.093541e-06\n        2023-12-29    6.550657e-06\nName: returns, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 6.7739584976690726e-06,
+        "std": 0.00024354242792684825,
+        "min": -0.0016323942061960825,
+        "max": 0.002319925953115236,
+        "median": 6.268203548675466e-07,
+        "skewness": 1.5326844730037446,
+        "kurtosis": 24.80018497012798,
+        "missing_pct": 0.8,
+        "non_zero_pct": 99.6,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.458486",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F20EC90> of shape (248,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22EAF7DD0> of shape (248,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F5E91D0> of shape (56,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F5E8E70> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F5E8B70> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.10984289540409245,
+          "annual_return": -0.15739052607341908,
+          "annual_volatility": 0.10825244133899967,
+          "sharpe_ratio": -1.638674600583916,
+          "max_drawdown": -0.12740832663569923,
+          "value_at_risk_95": -0.004292279377486126,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5623784061274506,
+          "alpha": -0.7197689322008697,
+          "sortino_ratio": -1.2194452186828417,
+          "calmar_ratio": -1.2353237047328034
+        },
+        "backtest_time": "2025-10-16T18:57:37.930042"
+      }
+    },
+    {
+      "expression": "df['returns'].shift(1) * df['returns']",
+      "explanation": "Return serial correlation",
+      "id": "factor_9",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:09.936589",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03             NaN\n        2023-01-04             NaN\n        2023-01-05   -1.093801e-04\n        2023-01-06   -3.901923e-04\n        2023-01-09    1.504552e-04\n                          ...     \nMSFT    2023-12-22    2.193626e-05\n        2023-12-26    5.944666e-07\n        2023-12-27   -3.362132e-07\n        2023-12-28   -5.093541e-06\n        2023-12-29    6.550657e-06\nName: returns, Length: 500, dtype: float64",
+      "stats": {
+        "mean": 6.7739584976690726e-06,
+        "std": 0.00024354242792684825,
+        "min": -0.0016323942061960825,
+        "max": 0.002319925953115236,
+        "median": 6.268203548675466e-07,
+        "skewness": 1.5326844730037446,
+        "kurtosis": 24.80018497012798,
+        "missing_pct": 0.8,
+        "non_zero_pct": 99.6,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.460437",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22F20EA50> of shape (248,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22EAD34D0> of shape (248,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F5DFED0> of shape (56,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F5DFC90> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F5DF930> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.10984289540409245,
+          "annual_return": -0.15739052607341908,
+          "annual_volatility": 0.10825244133899967,
+          "sharpe_ratio": -1.638674600583916,
+          "max_drawdown": -0.12740832663569923,
+          "value_at_risk_95": -0.004292279377486126,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5623784061274506,
+          "alpha": -0.7197689322008697,
+          "sortino_ratio": -1.2194452186828417,
+          "calmar_ratio": -1.2353237047328034
+        },
+        "backtest_time": "2025-10-16T18:57:37.955503"
+      }
+    },
+    {
+      "expression": "(df['close'] - df['open']) / df['open']",
+      "explanation": "Intraday gap return",
+      "id": "factor_10",
+      "validated": true,
+      "generation_time": "2025-10-16T18:57:10.938313",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2023-01-03",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "MSFT"
+        ],
+        "stats": {
+          "close": {
+            "mean": 239.69592037963866,
+            "std": 75.90703462373182,
+            "min": 123.28132629394531,
+            "max": 377.7835998535156
+          },
+          "high": {
+            "mean": 241.7287712540101,
+            "std": 76.57726778184713,
+            "min": 125.9930816643783,
+            "max": 379.3629996146164
+          },
+          "low": {
+            "mean": 237.3782042344142,
+            "std": 75.20160623325361,
+            "min": 122.44315755676651,
+            "max": 373.3019152003715
+          },
+          "open": {
+            "mean": 239.42913288502126,
+            "std": 75.97054160844591,
+            "min": 124.25756397513359,
+            "max": 378.82995852513955
+          },
+          "volume": {
+            "mean": 43450322.6,
+            "std": 21530992.576321937,
+            "min": 10176600.0,
+            "max": 154357300.0
+          },
+          "returns": {
+            "mean": 0.0019032938691690654,
+            "std": 0.014275916027332868,
+            "min": -0.048020061566106054,
+            "max": 0.07243472969518594
+          },
+          "log_returns": {
+            "mean": 0.0018003779452812044,
+            "std": 0.014228063967707393,
+            "min": -0.04921131748645289,
+            "max": 0.06993151187503938
+          },
+          "volume_ma_5": {
+            "mean": 43383894.18699187,
+            "std": 18474427.47482633,
+            "min": 15344200.0,
+            "max": 100708160.0
+          },
+          "volume_ma_20": {
+            "mean": 43222792.85714286,
+            "std": 16597477.66247134,
+            "min": 19394895.0,
+            "max": 75590930.0
+          },
+          "volume_ratio": {
+            "mean": 0.9919824853030086,
+            "std": 0.32813312913102394,
+            "min": 0.3806515055906764,
+            "max": 2.5544829210974256
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2023-01-03   -0.039991\n        2023-01-04   -0.004177\n        2023-01-05   -0.016597\n        2023-01-06    0.028648\n        2023-01-09   -0.002453\n                        ...   \nMSFT    2023-12-22    0.002408\n        2023-12-26   -0.000907\n        2023-12-27    0.001017\n        2023-12-28   -0.000240\n        2023-12-29    0.000106\nLength: 500, dtype: float64",
+      "stats": {
+        "mean": 0.0014151356405587533,
+        "std": 0.011944752413892593,
+        "min": -0.03999078241702122,
+        "max": 0.043707365223649486,
+        "median": 0.0011371661830089953,
+        "skewness": -0.020347867827749402,
+        "kurtosis": 0.9266854707740433,
+        "missing_pct": 0.0,
+        "non_zero_pct": 100.0,
+        "outlier_pct": 2.0
+      },
+      "evaluation_time": "2025-10-16T18:57:11.462181",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x000002B22D5225D0> of shape (250,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x000002B22F2E3BD0> of shape (250,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x000002B22F5D97D0> of shape (108,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x000002B22F5D9A10> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x000002B22F5D9E90> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.09105888896218621,
+          "annual_return": -0.13011430237971588,
+          "annual_volatility": 0.1501173419787195,
+          "sharpe_ratio": -0.9999797518463652,
+          "max_drawdown": -0.23025620937093438,
+          "value_at_risk_95": -0.011629835095966393,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.5578778693646154,
+          "alpha": -0.6879921717443312,
+          "sortino_ratio": -1.396708724508066,
+          "calmar_ratio": -0.5650848797311107
+        },
+        "backtest_time": "2025-10-16T18:57:37.980865"
+      }
+    }
+  ],
+  "evaluation": {
+    "summary": {
+      "total_factors": 10,
+      "factors_with_results": 10,
+      "avg_sharpe_ratio": -0.4793146481508965,
+      "avg_annual_return": -0.04381346659149634,
+      "avg_max_drawdown": -0.13850011784914076,
+      "avg_win_rate": 0.0,
+      "best_sharpe": 1.662655608546779,
+      "worst_sharpe": -1.638674600583916,
+      "profitable_factors": 5,
+      "positive_sharpe_factors": 1,
+      "low_drawdown_factors": 8
+    },
+    "performance_analysis": {
+      "sharpe_distribution": {
+        "mean": -0.4793146481508965,
+        "std": 1.0714410622975088,
+        "quartiles": {
+          "25%": -1.3902942428584768,
+          "50%": -0.513821879117736,
+          "75%": -0.02766400638910689
+        }
+      },
+      "performance_categories": {
+        "excellent": 1,
+        "good": 0,
+        "poor": 9
+      }
+    },
+    "factor_characteristics": {
+      "complexity_analysis": {
+        "avg_complexity": 14.740000000000004,
+        "complexity_range": {
+          "min": 8.2,
+          "max": 17.9
+        },
+        "most_complex": "factor_3",
+        "least_complex": "factor_5"
+      },
+      "feature_usage": {
+        "total_unique_features": 4,
+        "most_used_features": [
+          [
+            "close",
+            10
+          ],
+          [
+            "returns",
+            5
+          ],
+          [
+            "open",
+            4
+          ],
+          [
+            "volume",
+            2
+          ]
+        ],
+        "feature_usage_distribution": {
+          "close": 10,
+          "open": 4,
+          "returns": 5,
+          "volume": 2
+        }
+      },
+      "correlation_analysis": {
+        "avg_correlation": 1.0,
+        "correlation_range": {
+          "min": 1.0,
+          "max": 1.0
+        },
+        "high_correlation_pairs": []
+      }
+    },
+    "robustness_check": {
+      "consistency_check": {
+        "top_3_avg_sharpe": 0.6866297697752195,
+        "bottom_3_avg_sharpe": -1.599249424787893,
+        "performance_gap": 2.2858791945631127,
+        "consistent_results": "True"
+      },
+      "sensitivity_analysis": {
+        "message": "Sensitivity analysis not fully implemented in MVP",
+        "recommendation": "Consider testing factors across different time periods and market regimes"
+      }
+    },
+    "recommendations": [
+      "Average Sharpe ratio is low - factors may need optimization or different market data",
+      "Limited feature diversity - consider expanding the feature set",
+      "Validate top-performing factors on out-of-sample data",
+      "Consider ensemble methods combining multiple factors",
+      "Implement proper risk management before live trading",
+      "Monitor factor performance over time for decay"
+    ],
+    "evaluation_time": "2025-10-16T18:57:48.128403"
+  },
+  "export_time": "2025-10-16T18:57:48.128436",
+  "version": "1.0"
+}

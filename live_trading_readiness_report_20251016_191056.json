@@ -1,0 +1,97 @@
+{
+  "validation_timestamp": "2025-10-16T19:10:56.814865",
+  "overall_readiness_score": 62.5,
+  "validation_results": {
+    "IBKR Gateway Connection": {
+      "status": "pass",
+      "message": "Connected to: Paper Trading (port 4002, v176)",
+      "details": {
+        "available_gateways": [
+          "Paper Trading (port 4002, v176)"
+        ]
+      }
+    },
+    "Database Infrastructure": {
+      "status": "fail",
+      "message": "Database manager not found",
+      "recommendation": "Ensure railway_db_manager.py is available"
+    },
+    "AI Module Availability": {
+      "status": "fail",
+      "message": "AI module validation failed: unindent does not match any outer indentation level (ppo_trader.py, line 187)"
+    },
+    "Paper Trading Capability": {
+      "status": "pass",
+      "message": "Paper trading ready, account info retrieved (80 fields)",
+      "details": {
+        "account_fields": 80
+      }
+    },
+    "Data Pipeline Readiness": {
+      "status": "pass",
+      "message": "All data pipeline components available",
+      "details": {
+        "components": [
+          "level_ii_data_integration.py",
+          "optimized_faiss_trading.py",
+          "daily_launcher.py"
+        ]
+      }
+    },
+    "Risk Management Systems": {
+      "status": "pass",
+      "message": "Risk management components detected (3/4)",
+      "details": {
+        "position_sizing": false,
+        "stop_loss": false,
+        "drawdown_limits": false,
+        "exposure_limits": false,
+        "drawdown": true,
+        "position_size": true,
+        "risk": true
+      }
+    },
+    "Monitoring Infrastructure": {
+      "status": "pass",
+      "message": "Monitoring ready: 2 files, 3 dirs",
+      "details": {
+        "files": [
+          "DAILY_OPERATING_PROCEDURES.md",
+          "efficiency_validation_results.py"
+        ],
+        "directories": [
+          "logs",
+          "daily_reports",
+          "performance_tracking"
+        ]
+      }
+    },
+    "Production Readiness": {
+      "status": "partial",
+      "message": "Near production ready (71.4% systems operational)",
+      "recommendation": "Address remaining issues then deploy",
+      "details": {
+        "readiness_percentage": 71.42857142857143,
+        "passed_validations": 5,
+        "total_validations": 7
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "component": "Database Infrastructure",
+      "priority": "high",
+      "recommendation": "Ensure railway_db_manager.py is available"
+    },
+    {
+      "component": "Production Readiness",
+      "priority": "medium",
+      "recommendation": "Address remaining issues then deploy"
+    }
+  ],
+  "deployment_plan": {
+    "timeline": "1-2 weeks",
+    "approach": "Address infrastructure issues first",
+    "focus": "Fix identified problems then deploy selectively"
+  }
+}

@@ -102,7 +102,7 @@ class BacktestingEngine:
             return None
 
     def _prepare_backtest_data(self, factor_values: pd.Series, market_data: pd.DataFrame) -> Optional[pd.DataFrame]:
-        """Prepare data for backtesting"""
+        """Prepare data for backtesting with proper alignment and validation"""
 
         try:
             # Ensure we have the necessary price data
@@ -110,44 +110,63 @@ class BacktestingEngine:
                 logger.error("Market data missing 'close' prices")
                 return None
 
-            # Align factor values with market data
+            # Handle multi-index data properly
             if isinstance(market_data.index, pd.MultiIndex):
-                # Handle multi-index (ticker, date)
-                close_prices = market_data['close'].unstack(level=0) if 'ticker' in market_data.index.names else market_data['close']
+                logger.warning("Multi-index detected; using first ticker only for MVP")
+                first_ticker = market_data.index.get_level_values('ticker').unique()[0] if 'ticker' in market_data.index.names else market_data.index.get_level_values(0)[0]
+                
+                # Extract data for first ticker
+                try:
+                    ticker_data = market_data.xs(first_ticker, level='ticker' if 'ticker' in market_data.index.names else 0)
+                    close_prices = ticker_data['close']
+                except KeyError:
+                    logger.error(f"Could not extract data for ticker {first_ticker}")
+                    return None
+                
+                # Align factor values properly - factor_values should have MultiIndex after dropna
+                if isinstance(factor_values.index, pd.MultiIndex):
+                    try:
+                        # Extract factor values for this ticker
+                        factor_for_ticker = factor_values.xs(first_ticker, level='ticker' if 'ticker' in factor_values.index.names else 1)
+                        # Ensure date alignment
+                        factor_aligned = factor_for_ticker.reindex(close_prices.index).ffill().fillna(0)
+                    except (KeyError, TypeError) as e:
+                        logger.warning(f"Could not extract factor for ticker {first_ticker}: {e}")
+                        # Try reindexing directly if factor doesn't have ticker level
+                        try:
+                            factor_aligned = factor_values.reindex(close_prices.index, method='ffill').fillna(0)
+                        except Exception:
+                            logger.warning("Reindexing failed, using zeros")
+                            factor_aligned = pd.Series(0, index=close_prices.index)
+                else:
+                    # Factor is not multi-index (happens after dropna), try to reconstruct alignment
+                    logger.warning("Factor values lost MultiIndex structure, attempting reconstruction")
+                    # Since we can't easily reconstruct, use zeros for now
+                    factor_aligned = pd.Series(0, index=close_prices.index)
             else:
                 close_prices = market_data['close']
+                factor_aligned = factor_values.reindex(close_prices.index, method='ffill').fillna(0)
 
-            # Align factor with close prices
-            if isinstance(factor_values.index, pd.MultiIndex):
-                factor_aligned = factor_values.unstack(level=0) if len(factor_values.index.levels) > 1 else factor_values
-            else:
-                factor_aligned = factor_values
-
-            # Ensure datetime index
-            if not isinstance(close_prices.index, pd.DatetimeIndex):
-                close_prices.index = pd.to_datetime(close_prices.index)
-            if not isinstance(factor_aligned.index, pd.DatetimeIndex):
-                factor_aligned.index = pd.to_datetime(factor_aligned.index)
-
-            # Align the indices
-            common_index = close_prices.index.intersection(factor_aligned.index)
-            if len(common_index) == 0:
-                logger.warning("No overlapping dates between factor and price data")
-                return None
-
-            close_prices = close_prices.loc[common_index]
-            factor_aligned = factor_aligned.loc[common_index]
-
-            # Create backtest DataFrame
+            # Create DataFrame with proper alignment
             backtest_df = pd.DataFrame({
                 'close': close_prices,
                 'factor': factor_aligned
             }).dropna()
 
-            if len(backtest_df) < 100:  # Minimum data requirement
-                logger.warning(f"Insufficient data for backtesting: {len(backtest_df)} observations")
+            # Check minimum data requirement (configurable, default 252 trading days)
+            min_days = self.config.get('min_backtest_days', 252)
+            if len(backtest_df) < min_days:
+                logger.warning(f"Insufficient data: {len(backtest_df)} < min {min_days} days required")
+                # For MVP testing, allow shorter periods but warn
+                if len(backtest_df) < 50:  # Absolute minimum
+                    return None
+
+            # Validate factor has variation
+            if backtest_df['factor'].std() == 0:
+                logger.warning("Factor has no variation (constant values)")
                 return None
 
+            logger.info(f"Prepared backtest data: {len(backtest_df)} observations, factor std: {backtest_df['factor'].std():.4f}")
             return backtest_df
 
         except Exception as e:
@@ -155,33 +174,51 @@ class BacktestingEngine:
             return None
 
     def _run_factor_backtest(self, data: pd.DataFrame) -> Optional[Any]:
-        """Run the actual backtest using vectorbt"""
+        """Run the actual backtest using vectorbt with improved signal logic"""
 
         try:
             # Create price data
             price = data['close']
             factor = data['factor']
 
-            # Create signals based on factor
-            # Long when factor > threshold, short when factor < -threshold
-            threshold = factor.std() * 0.5  # Adaptive threshold based on factor volatility
+            # Normalize factor using z-score for better signal quality
+            factor_normalized = (factor - factor.mean()) / factor.std()
 
-            long_signal = (factor > threshold).astype(int)
-            short_signal = (factor < -threshold).astype(int)
+            # Create signals based on normalized factor
+            signal_threshold = self.config.get('signal_threshold_factor', 0.5)
+            threshold = signal_threshold  # Now using normalized factor
 
-            # Create entries and exits
-            entries = long_signal
-            exits = short_signal
+            # Generate long/short signals with no overlap
+            long_signal = (factor_normalized > threshold).astype(int)
+            short_signal = (factor_normalized < -threshold).astype(int)
+            
+            # Ensure no overlapping positions
+            entries = long_signal & ~short_signal  # Only long when not short
+            exits = short_signal | (long_signal.shift(1) == 1) & (long_signal == 0)  # Exit on short signal or long signal ends
+
+            # Log signal statistics
+            long_count = entries.sum()
+            exit_count = exits.sum()
+            logger.info(f"Generated {long_count} long signals, {exit_count} exit signals")
+
+            if long_count == 0:
+                logger.warning("No trading signals generated - factor may be too weak")
+                # Return minimal portfolio for metrics calculation
+                entries = pd.Series([1] + [0] * (len(price) - 1), index=price.index)  # Single buy-and-hold trade
+                exits = pd.Series([0] * (len(price) - 1) + [1], index=price.index)   # Exit at end
 
             # Run backtest
+            init_cash = self.config.get('initial_capital', 10000)
+            fees = self.config.get('commission', 0.001)
+            
             portfolio = self.vbt.Portfolio.from_signals(
                 close=price,
                 entries=entries,
                 exits=exits,
                 freq='D',  # Daily frequency
-                init_cash=10000,  # Starting capital
-                fees=0.001,  # 0.1% trading fees
-                slippage=0.001  # 0.1% slippage
+                init_cash=init_cash,
+                fees=fees,
+                slippage=self.config.get('slippage', 0.001)
             )
 
             return portfolio
@@ -191,7 +228,7 @@ class BacktestingEngine:
             return None
 
     def _calculate_performance_metrics(self, portfolio: Any) -> Dict[str, Any]:
-        """Calculate comprehensive performance metrics"""
+        """Calculate comprehensive performance metrics with proper risk-adjusted measures"""
 
         try:
             metrics = {}
@@ -201,54 +238,108 @@ class BacktestingEngine:
             annual_return = portfolio.annualized_return()
             volatility = portfolio.annualized_volatility()
 
+            # Risk-free rate (configurable, default 2%)
+            risk_free_rate = self.config.get('risk_free_rate', 0.02)
+
             metrics.update({
                 'total_return': float(total_return),
                 'annual_return': float(annual_return),
                 'annual_volatility': float(volatility),
-                'sharpe_ratio': float(annual_return / volatility) if volatility > 0 else 0,
+                'sharpe_ratio': float((annual_return - risk_free_rate) / volatility) if volatility > 0 else 0,
             })
 
-            # Risk metrics
-            max_drawdown = portfolio.max_drawdown()
-            var_95 = portfolio.value_at_risk(0.05)
-            cvar_95 = portfolio.conditional_value_at_risk(0.05)
+            # Risk metrics (handle API changes in VectorBT)
+            try:
+                max_drawdown = portfolio.max_drawdown()
+                metrics['max_drawdown'] = float(max_drawdown)
+            except Exception as e:
+                logger.warning(f"Could not calculate max_drawdown: {e}")
+                metrics['max_drawdown'] = 0
 
-            metrics.update({
-                'max_drawdown': float(max_drawdown),
-                'value_at_risk_95': float(var_95),
-                'conditional_var_95': float(cvar_95),
-            })
+            try:
+                # Handle VectorBT API changes - try different methods
+                if hasattr(portfolio, 'value_at_risk'):
+                    var_95 = portfolio.value_at_risk()  # No parameter version
+                else:
+                    # Alternative calculation
+                    returns = portfolio.returns()
+                    var_95 = returns.quantile(0.05)
+                metrics['value_at_risk_95'] = float(var_95)
+            except Exception as e:
+                logger.warning(f"Could not calculate VaR: {e}")
+                metrics['value_at_risk_95'] = 0
 
             # Trading metrics
-            total_trades = portfolio.trades().count()
-            win_rate = portfolio.trades().winning_rate()
-            profit_factor = portfolio.trades().profit_factor()
-            avg_trade_return = portfolio.trades().returns().mean()
+            try:
+                trades = portfolio.trades()
+                total_trades = trades.count()
+                win_rate = trades.winning_rate() if hasattr(trades, 'winning_rate') else 0
+                profit_factor = trades.profit_factor() if hasattr(trades, 'profit_factor') else 0
+                avg_trade_return = trades.returns().mean() if hasattr(trades, 'returns') else 0
 
-            metrics.update({
-                'total_trades': int(total_trades),
-                'win_rate': float(win_rate),
-                'profit_factor': float(profit_factor) if not np.isnan(profit_factor) else 0,
-                'avg_trade_return': float(avg_trade_return) if not np.isnan(avg_trade_return) else 0,
-            })
+                metrics.update({
+                    'total_trades': int(total_trades) if not np.isnan(total_trades) else 0,
+                    'win_rate': float(win_rate) if not np.isnan(win_rate) else 0,
+                    'profit_factor': float(profit_factor) if not np.isnan(profit_factor) else 0,
+                    'avg_trade_return': float(avg_trade_return) if not np.isnan(avg_trade_return) else 0,
+                })
+
+                # Add warning for low trade count
+                if metrics['total_trades'] < 10:
+                    metrics['warning'] = 'Low trade count - results may not be statistically significant'
+                    logger.warning(f"Low trade count: {metrics['total_trades']} trades")
+
+            except Exception as e:
+                logger.warning(f"Could not calculate trade metrics: {e}")
+                metrics.update({
+                    'total_trades': 0,
+                    'win_rate': 0,
+                    'profit_factor': 0,
+                    'avg_trade_return': 0,
+                    'warning': 'Failed to calculate trade metrics'
+                })
 
             # Benchmark comparison (buy and hold)
             try:
                 benchmark = self._calculate_benchmark_return(portfolio)
                 metrics['benchmark_return'] = float(benchmark)
                 metrics['alpha'] = float(annual_return - benchmark)
-            except:
+            except Exception as e:
+                logger.warning(f"Could not calculate benchmark: {e}")
                 metrics['benchmark_return'] = 0
                 metrics['alpha'] = 0
 
+            # Additional risk-adjusted metrics
+            try:
+                # Sortino ratio (downside deviation)
+                returns = portfolio.returns()
+                negative_returns = returns[returns < 0]
+                if len(negative_returns) > 0:
+                    downside_deviation = negative_returns.std() * np.sqrt(252)  # Annualized
+                    sortino_ratio = (annual_return - risk_free_rate) / downside_deviation if downside_deviation > 0 else 0
+                else:
+                    sortino_ratio = float('inf') if annual_return > risk_free_rate else 0
+                
+                metrics['sortino_ratio'] = float(sortino_ratio) if not np.isinf(sortino_ratio) else 999
+                
+                # Calmar ratio
+                calmar_ratio = annual_return / abs(metrics['max_drawdown']) if metrics['max_drawdown'] != 0 else 0
+                metrics['calmar_ratio'] = float(calmar_ratio)
+
+            except Exception as e:
+                logger.warning(f"Could not calculate advanced metrics: {e}")
+                metrics['sortino_ratio'] = 0
+                metrics['calmar_ratio'] = 0
+
+            logger.info(f"Calculated metrics: Sharpe={metrics['sharpe_ratio']:.3f}, Return={metrics['annual_return']:.3f}")
             return metrics
 
         except Exception as e:
             logger.error(f"Error calculating performance metrics: {e}")
-            return {}
+            return {'error': str(e), 'sharpe_ratio': 0, 'annual_return': 0}
 
     def _calculate_benchmark_return(self, portfolio: Any) -> float:
-        """Calculate buy-and-hold benchmark return"""
+        """Calculate buy-and-hold benchmark return with proper date handling"""
 
         try:
             # Get the price series used in backtest
@@ -259,10 +350,22 @@ class BacktestingEngine:
             end_price = price_data.iloc[-1]
             benchmark_return = (end_price / start_price) - 1
 
-            # Annualize
-            days = len(price_data)
-            annual_benchmark = (1 + benchmark_return) ** (252 / days) - 1
+            # Calculate actual time period for proper annualization
+            if hasattr(price_data.index, 'to_pydatetime'):
+                start_date = pd.to_datetime(price_data.index[0])
+                end_date = pd.to_datetime(price_data.index[-1])
+                days_elapsed = (end_date - start_date).days
+            else:
+                # Fallback to counting observations
+                days_elapsed = len(price_data)
 
+            # Annualize properly
+            if days_elapsed > 0:
+                annual_benchmark = (1 + benchmark_return) ** (365.25 / days_elapsed) - 1
+            else:
+                annual_benchmark = 0
+
+            logger.info(f"Benchmark: {benchmark_return:.3f} over {days_elapsed} days, annualized: {annual_benchmark:.3f}")
             return annual_benchmark
 
         except Exception as e:

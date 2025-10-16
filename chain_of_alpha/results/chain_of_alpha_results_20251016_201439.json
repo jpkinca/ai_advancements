@@ -1,0 +1,1595 @@
+{
+  "factors": [
+    {
+      "expression": "((df['momentum_5'] - df['momentum_20']) / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures cross-sectional momentum divergence by comparing short-term (5-day) momentum to medium-term (20-day) momentum, normalized by volatility to account for risk differences across assets. It exploits behavioral biases where investors overreact to short-term price movements relative to medium-term trends, particularly in volatile regimes, creating temporary mispricings. The cross-sectional ranking ensures market neutrality and comparability across assets.",
+      "id": "factor_1",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:32.146304",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22   -0.083333\n        2023-12-26    0.000000\n        2023-12-27    0.083333\n        2023-12-28    0.333333\n        2023-12-29    0.166667\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.28486831953410346,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008662886628750975,
+        "kurtosis": -1.1820626337347386,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.309987",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C5192B770> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C51A59DD0> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C54B2FF90> of shape (135,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C54A2A9D0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C51A38990> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.37597787250920917,
+          "annual_return": 0.12277163057473905,
+          "annual_volatility": 0.2438960682294211,
+          "sharpe_ratio": 0.42137469177267267,
+          "max_drawdown": -0.23721397697944702,
+          "value_at_risk_95": -0.01914747509983562,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.1517744769241285,
+          "sortino_ratio": 0.49539636269069903,
+          "calmar_ratio": 0.5175564784927339
+        },
+        "backtest_time": "2025-10-16T20:09:31.440580"
+      }
+    },
+    {
+      "expression": "((df['close'] / df['sma_20'] - 1) * (df['volume_ratio'] - 1)).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures mean reversion opportunities by identifying price deviations from the 20-day moving average that are not supported by corresponding volume changes, suggesting overreactions driven by behavioral biases like anchoring or herd behavior. When price moves significantly away from its recent trend without volume confirmation, it often indicates a lack of conviction, leading to potential reversals. The cross-sectional ranking ensures market neutrality by focusing on relative mispricing across assets within the same time period.",
+      "id": "factor_2",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:37.382612",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.250000\n        2023-12-26    0.083333\n        2023-12-27    0.166667\n        2023-12-28    0.333333\n        2023-12-29    0.166667\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04087972166998011,
+        "std": 0.2850097688874769,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008225714240508676,
+        "kurtosis": -1.1838348615631227,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.93538767395626,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.351623",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C54581B50> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C54B82FD0> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C547AE550> of shape (269,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C547ADE30> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C547ADC50> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.04316142440580934,
+          "annual_return": -0.015880517170248187,
+          "annual_volatility": 0.2287471582935771,
+          "sharpe_ratio": -0.15685666846273413,
+          "max_drawdown": -0.37175050356670125,
+          "value_at_risk_95": -0.015553006519212046,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.29042662466911573,
+          "sortino_ratio": -0.20474413412239448,
+          "calmar_ratio": -0.04271821293551746
+        },
+        "backtest_time": "2025-10-16T20:09:31.464854"
+      }
+    },
+    {
+      "expression": "(df['momentum_5'] / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor exploits behavioral biases such as anchoring and herding by combining relative strength index (RSI) deviations from cross-sectional mean with abnormal volume activity. It captures overreactions in individual securities where investors anchor to recent price trends (via RSI) and herd into trades (via volume spikes), often leading to short-term mispricing. The cross-sectional ranking ensures market neutrality by focusing on relative positioning across assets on a given date.",
+      "id": "factor_3",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:42.422939",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22   -0.333333\n        2023-12-26    0.000000\n        2023-12-27    0.083333\n        2023-12-28   -0.083333\n        2023-12-29   -0.333333\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.28486831953410174,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008662886628750987,
+        "kurtosis": -1.182062633734738,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.408642",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C564A5F10> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C56A88FD0> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C546CD890> of shape (218,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C546CE8B0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C546CE610> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.394240750541955,
+          "annual_return": -0.1662930169064747,
+          "annual_volatility": 0.2578547545025509,
+          "sharpe_ratio": -0.7224726853141338,
+          "max_drawdown": -0.4612602403316136,
+          "value_at_risk_95": -0.01835030228487899,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.44083912440534223,
+          "sortino_ratio": -0.7926387368982638,
+          "calmar_ratio": -0.3605188619485645
+        },
+        "backtest_time": "2025-10-16T20:09:31.490064"
+      }
+    },
+    {
+      "expression": "((df['volume_ratio'] - 1) * (df['high'] / df['low'] - 1) / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures market microstructure and liquidity effects by combining volume deviations (via volume_ratio) with intraday price range (high/low ratio) normalized by recent volatility. It exploits behavioral biases where unusual volume paired with wide price swings often signals overreaction or illiquidity, especially in volatile regimes, providing opportunities for contrarian trades. The cross-sectional ranking ensures market neutrality and comparability across assets.",
+      "id": "factor_4",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:47.141904",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.000000\n        2023-12-26    0.333333\n        2023-12-27    0.333333\n        2023-12-28    0.333333\n        2023-12-29    0.083333\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.2848683195341033,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008662886628751003,
+        "kurtosis": -1.1820626337347377,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.450128",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C564A68D0> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C56A9B350> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C54696F10> of shape (260,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C546969D0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C54694810> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.26373189163754934,
+          "annual_return": -0.1051348592962702,
+          "annual_volatility": 0.21363096445816876,
+          "sharpe_ratio": -0.5857524428335994,
+          "max_drawdown": -0.39104469655646723,
+          "value_at_risk_95": -0.017552293930626447,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.37968096679513774,
+          "sortino_ratio": -0.7099860376282014,
+          "calmar_ratio": -0.26885637427661324
+        },
+        "backtest_time": "2025-10-16T20:09:31.524035"
+      }
+    },
+    {
+      "expression": "((df['sma_5'] / df['sma_50'] - 1) * (df['momentum_20'] / df['volatility_20'])).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures multi-timeframe trend strength by combining the relative positioning of short-term (5-day) to long-term (50-day) moving averages with a risk-adjusted momentum signal (20-day momentum normalized by 20-day volatility). It exploits behavioral biases such as anchoring and herding, where investors overreact to short-term trends while ignoring longer-term stability, especially in volatile regimes. The cross-sectional ranking ensures market neutrality and comparability across assets, focusing on relative trend strength.",
+      "id": "factor_5",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:51.587456",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.083333\n        2023-12-26    0.166667\n        2023-12-27    0.000000\n        2023-12-28    0.000000\n        2023-12-29   -0.166667\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.039637176938369774,
+        "std": 0.28073262933060394,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.021532465691309132,
+        "kurtosis": -1.1289425101338542,
+        "missing_pct": 0.0,
+        "non_zero_pct": 87.20178926441352,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.502461",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C56360AD0> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C56A10450> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C563B2C10> of shape (112,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C563B3270> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C563B37B0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.4466491386765365,
+          "annual_return": 0.14336125662574073,
+          "annual_volatility": 0.21705217501383747,
+          "sharpe_ratio": 0.5683484011062143,
+          "max_drawdown": -0.27907249396655387,
+          "value_at_risk_95": -0.01481418515655247,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.1311848508731268,
+          "sortino_ratio": 0.6109745348168792,
+          "calmar_ratio": 0.5137061506424284
+        },
+        "backtest_time": "2025-10-16T20:09:31.549285"
+      }
+    },
+    {
+      "expression": "(df['momentum_5'] / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures volatility regime transitions by measuring the recent variability in 20-day volatility (using a 5-day standard deviation) scaled by the current volatility level, and multiplies it by deviations in volume ratio to capture shifts in market participation during regime changes. It exploits behavioral biases such as overreaction to volatility spikes and underreaction to early signs of regime shifts, often missed by institutional investors focused on static volatility metrics. The cross-sectional ranking ensures market neutrality by normalizing across assets daily.",
+      "id": "factor_6",
+      "validated": true,
+      "generation_time": "2025-10-16T20:08:56.392566",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22   -0.333333\n        2023-12-26    0.000000\n        2023-12-27    0.083333\n        2023-12-28   -0.083333\n        2023-12-29   -0.333333\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.28486831953410174,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008662886628750987,
+        "kurtosis": -1.182062633734738,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.549107",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C563619D0> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C549F90D0> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C563B2670> of shape (218,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C563B0B70> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C563B0570> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.394240750541955,
+          "annual_return": -0.1662930169064747,
+          "annual_volatility": 0.2578547545025509,
+          "sharpe_ratio": -0.7224726853141338,
+          "max_drawdown": -0.4612602403316136,
+          "value_at_risk_95": -0.01835030228487899,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.44083912440534223,
+          "sortino_ratio": -0.7926387368982638,
+          "calmar_ratio": -0.3605188619485645
+        },
+        "backtest_time": "2025-10-16T20:09:31.576137"
+      }
+    },
+    {
+      "expression": "((df['momentum_20'] / df['sma_50']) * (df['rsi'] - 50)).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures the interaction between longer-term price momentum and relative strength (RSI) to identify assets where fundamental momentum may diverge from price action, exploiting behavioral biases like overreaction and delayed information incorporation. By normalizing momentum with the 50-day SMA, it accounts for asset-specific price levels, while RSI deviation from 50 highlights overbought/oversold conditions that may precede reversals or continuations. The cross-sectional ranking ensures market neutrality and comparability across assets.",
+      "id": "factor_7",
+      "validated": true,
+      "generation_time": "2025-10-16T20:09:03.885601",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.083333\n        2023-12-26    0.166667\n        2023-12-27    0.000000\n        2023-12-28   -0.250000\n        2023-12-29   -0.250000\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.039637176938369774,
+        "std": 0.28073262933060567,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.021532465691309108,
+        "kurtosis": -1.1289425101338542,
+        "missing_pct": 0.0,
+        "non_zero_pct": 87.20178926441352,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.608719",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C56361C10> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C569B9950> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C5639D650> of shape (134,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C5639CB10> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C5639E730> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": 0.26061556865696456,
+          "annual_return": 0.08766138704417181,
+          "annual_volatility": 0.22814404783439526,
+          "sharpe_ratio": 0.29657309794593334,
+          "max_drawdown": -0.3350793812670848,
+          "value_at_risk_95": -0.01584108092508821,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.18688472045469573,
+          "sortino_ratio": 0.34157887563454137,
+          "calmar_ratio": 0.2616137904776025
+        },
+        "backtest_time": "2025-10-16T20:09:31.602766"
+      }
+    },
+    {
+      "expression": "((df['volume_ratio'] * df['momentum_20']) / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures sector rotation and relative strength by combining volume dynamics with medium-term momentum, normalized by volatility to account for risk differences across assets. It exploits behavioral biases where investors often overreact to volume surges in trending stocks, while the volatility adjustment ensures the factor remains comparable across different market regimes and asset risk profiles. The cross-sectional ranking ensures market neutrality by focusing on relative performance within each time period.",
+      "id": "factor_8",
+      "validated": true,
+      "generation_time": "2025-10-16T20:09:11.437652",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.166667\n        2023-12-26    0.166667\n        2023-12-27    0.166667\n        2023-12-28    0.000000\n        2023-12-29   -0.166667\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.2848683195341005,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008662886628751003,
+        "kurtosis": -1.1820626337347377,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.661604",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C56361F10> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C56A2D850> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C56350ED0> of shape (124,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C563510B0> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C563512F0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.03818724332797337,
+          "annual_return": -0.01402737904721485,
+          "annual_volatility": 0.20539411047746997,
+          "sharpe_ratio": -0.16566871838784966,
+          "max_drawdown": -0.33486600390250865,
+          "value_at_risk_95": -0.015130803493874398,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.2885734865460824,
+          "sortino_ratio": -0.19287613499605355,
+          "calmar_ratio": -0.04188952859872487
+        },
+        "backtest_time": "2025-10-16T20:09:31.628141"
+      }
+    },
+    {
+      "expression": "((df['momentum_5'] * (1 - df['rsi'] / 100)) / df['volatility_20']).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures cross-sectional momentum adjusted for overbought conditions and volatility, exploiting behavioral biases where investors overreact to short-term price movements in less overbought stocks. By weighting momentum with an inverse RSI component, it prioritizes assets with room to run, while the volatility adjustment accounts for risk differences across assets. This design aims to be market-neutral through percentile ranking and focuses on relative strength within a cross-sectional framework.",
+      "id": "factor_9",
+      "validated": true,
+      "generation_time": "2025-10-16T20:09:15.859278",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22   -0.333333\n        2023-12-26    0.166667\n        2023-12-27    0.333333\n        2023-12-28    0.000000\n        2023-12-29   -0.333333\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04083830351225977,
+        "std": 0.28486831953410185,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.00866288662875099,
+        "kurtosis": -1.1820626337347377,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.84426772697151,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.707164",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C56362990> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C56A42150> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C54611710> of shape (218,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C54672670> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C54610030> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.15068122865172573,
+          "annual_return": -0.05753501831299146,
+          "annual_volatility": 0.248794334620945,
+          "sharpe_ratio": -0.3116430220612592,
+          "max_drawdown": -0.3034147651249559,
+          "value_at_risk_95": -0.016725409189717703,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.332081125811859,
+          "sortino_ratio": -0.3377487748602495,
+          "calmar_ratio": -0.1896249784986459
+        },
+        "backtest_time": "2025-10-16T20:09:31.653031"
+      }
+    },
+    {
+      "expression": "((df['volume_ratio'] - 1) * (df['close'] / df['sma_20'] - 1)).groupby(df['date']).rank(pct=True) - 0.5",
+      "explanation": "This factor captures mean reversion opportunities by identifying volume-price divergence, where unusually high or low volume relative to recent averages (via volume_ratio) coincides with price deviations from the 20-day moving average, suggesting overreaction or underreaction by market participants. It exploits behavioral biases such as herd behavior and delayed price discovery, expecting prices to revert when volume spikes or drops disproportionately to price movements. The cross-sectional ranking ensures market neutrality and comparability across assets, mitigating beta exposure.",
+      "id": "factor_10",
+      "validated": true,
+      "generation_time": "2025-10-16T20:09:21.767820",
+      "data_context": {
+        "columns": [
+          "close",
+          "high",
+          "low",
+          "open",
+          "volume",
+          "returns",
+          "log_returns",
+          "volume_ma_5",
+          "volume_ma_20",
+          "volume_ratio",
+          "momentum_5",
+          "momentum_20",
+          "volatility_20",
+          "sma_5",
+          "sma_20",
+          "sma_50",
+          "rsi",
+          "macd",
+          "macd_signal",
+          "macd_hist"
+        ],
+        "date_range": {
+          "start": "2020-01-02",
+          "end": "2023-12-29"
+        },
+        "tickers": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MSFT",
+          "NFLX",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA"
+        ],
+        "stats": {
+          "close": {
+            "mean": 196.0205861713572,
+            "std": 135.55965135723153,
+            "min": 4.891360759735107,
+            "max": 691.6900024414062
+          },
+          "high": {
+            "mean": 198.49908164865488,
+            "std": 136.9338475462375,
+            "min": 5.228576159943391,
+            "max": 700.989990234375
+          },
+          "low": {
+            "mean": 193.39643117287255,
+            "std": 134.12205350002048,
+            "min": 4.499853317187117,
+            "max": 686.0900268554688
+          },
+          "open": {
+            "mean": 195.96177545527476,
+            "std": 135.57494499532245,
+            "min": 4.983510181129494,
+            "max": 692.3499755859375
+          },
+          "volume": {
+            "mean": 92614392.08913188,
+            "std": 134453014.89616084,
+            "min": 1144000.0,
+            "max": 1543911000.0
+          },
+          "returns": {
+            "mean": 0.001235967627698625,
+            "std": 0.02739553699700831,
+            "min": -0.3511660252264417,
+            "max": 0.24369636227644653
+          },
+          "log_returns": {
+            "mean": 0.0008585083549763076,
+            "std": 0.027515980536770904,
+            "min": -0.43257841199468944,
+            "max": 0.2180878827528389
+          },
+          "volume_ma_5": {
+            "mean": 92711213.85728543,
+            "std": 129553391.55319265,
+            "min": 1695540.0,
+            "max": 981141600.0
+          },
+          "volume_ma_20": {
+            "mean": 92905096.6345829,
+            "std": 126263878.73857906,
+            "min": 2340390.0,
+            "max": 767261800.0
+          },
+          "volume_ratio": {
+            "mean": 1.0091174287320792,
+            "std": 0.40771089429087387,
+            "min": 0.20171962977301502,
+            "max": 11.432926829268293
+          }
+        }
+      },
+      "values": "ticker  Date      \nAAPL    2020-01-02    0.000000\n        2020-01-03    0.000000\n        2020-01-06    0.000000\n        2020-01-07    0.000000\n        2020-01-08    0.000000\n                        ...   \nTSLA    2023-12-22    0.250000\n        2023-12-26    0.083333\n        2023-12-27    0.166667\n        2023-12-28    0.333333\n        2023-12-29    0.166667\nLength: 12072, dtype: float64",
+      "stats": {
+        "mean": 0.04087972166998011,
+        "std": 0.2850097688874769,
+        "min": -0.4166666666666667,
+        "max": 0.5,
+        "median": 0.0,
+        "skewness": 0.008225714240508676,
+        "kurtosis": -1.1838348615631227,
+        "missing_pct": 0.0,
+        "non_zero_pct": 89.93538767395626,
+        "outlier_pct": 0.0
+      },
+      "evaluation_time": "2025-10-16T20:09:22.766922",
+      "backtest_results": {
+        "portfolio": "Portfolio(**Config({\n    \"wrapper\": \"<vectorbt.base.array_wrapper.ArrayWrapper object at 0x0000021C56360DD0> of shape (1006,)\",\n    \"close\": \"<pandas.core.series.Series object at 0x0000021C569CDFD0> of shape (1006,)\",\n    \"order_records\": \"<numpy.ndarray object at 0x0000021C5640FF30> of shape (269,)\",\n    \"log_records\": \"<numpy.ndarray object at 0x0000021C5640E130> of shape (0,)\",\n    \"init_cash\": \"<numpy.ndarray object at 0x0000021C5640C7B0> of shape (1,)\",\n    \"cash_sharing\": false,\n    \"call_seq\": null,\n    \"fillna_close\": null,\n    \"trades_type\": null\n}))",
+        "metrics": {
+          "total_return": -0.04316142440580934,
+          "annual_return": -0.015880517170248187,
+          "annual_volatility": 0.2287471582935771,
+          "sharpe_ratio": -0.15685666846273413,
+          "max_drawdown": -0.37175050356670125,
+          "value_at_risk_95": -0.015553006519212046,
+          "total_trades": 0,
+          "win_rate": 0,
+          "profit_factor": 0,
+          "avg_trade_return": 0,
+          "warning": "Failed to calculate trade metrics",
+          "benchmark_return": 0.27454610749886754,
+          "alpha": -0.29042662466911573,
+          "sortino_ratio": -0.20474413412239448,
+          "calmar_ratio": -0.04271821293551746
+        },
+        "backtest_time": "2025-10-16T20:09:31.678432"
+      }
+    }
+  ],
+  "evaluation": {
+    "summary": {
+      "total_factors": 10,
+      "factors_with_results": 10,
+      "avg_sharpe_ratio": -0.15354267000116234,
+      "avg_annual_return": -0.018725005056527067,
+      "avg_max_drawdown": -0.3546712805593647,
+      "avg_win_rate": 0.0,
+      "best_sharpe": 0.5683484011062143,
+      "worst_sharpe": -0.7224726853141338,
+      "profitable_factors": 3,
+      "positive_sharpe_factors": 1,
+      "low_drawdown_factors": 0
+    },
+    "performance_analysis": {
+      "sharpe_distribution": {
+        "mean": -0.15354267000116234,
+        "std": 0.46110900565805696,
+        "quartiles": {
+          "25%": -0.5172250876405143,
+          "50%": -0.1612626934252919,
+          "75%": 0.18321565634376646
+        }
+      },
+      "performance_categories": {
+        "excellent": 0,
+        "good": 1,
+        "poor": 9
+      }
+    },
+    "factor_characteristics": {
+      "complexity_analysis": {
+        "avg_complexity": 34.559999999999995,
+        "complexity_range": {
+          "min": 24.1,
+          "max": 44.0
+        },
+        "most_complex": "factor_4",
+        "least_complex": "factor_3"
+      },
+      "feature_usage": {
+        "total_unique_features": 12,
+        "most_used_features": [
+          [
+            "date",
+            10
+          ],
+          [
+            "volatility_20",
+            7
+          ],
+          [
+            "momentum_5",
+            4
+          ],
+          [
+            "momentum_20",
+            4
+          ],
+          [
+            "volume_ratio",
+            4
+          ],
+          [
+            "close",
+            2
+          ],
+          [
+            "sma_20",
+            2
+          ],
+          [
+            "sma_50",
+            2
+          ],
+          [
+            "rsi",
+            2
+          ],
+          [
+            "high",
+            1
+          ]
+        ],
+        "feature_usage_distribution": {
+          "momentum_5": 4,
+          "momentum_20": 4,
+          "volatility_20": 7,
+          "date": 10,
+          "close": 2,
+          "sma_20": 2,
+          "volume_ratio": 4,
+          "high": 1,
+          "low": 1,
+          "sma_5": 1,
+          "sma_50": 2,
+          "rsi": 2
+        }
+      },
+      "correlation_analysis": {
+        "avg_correlation": 1.0,
+        "correlation_range": {
+          "min": 1.0,
+          "max": 1.0
+        },
+        "high_correlation_pairs": []
+      }
+    },
+    "robustness_check": {
+      "consistency_check": {
+        "top_3_avg_sharpe": 0.42876539694160676,
+        "bottom_3_avg_sharpe": -0.6768992711539555,
+        "performance_gap": 1.1056646680955624,
+        "consistent_results": "True"
+      },
+      "sensitivity_analysis": {
+        "message": "Sensitivity analysis not fully implemented in MVP",
+        "recommendation": "Consider testing factors across different time periods and market regimes"
+      }
+    },
+    "recommendations": [
+      "Average Sharpe ratio is low - factors may need optimization or different market data",
+      "Validate top-performing factors on out-of-sample data",
+      "Consider ensemble methods combining multiple factors",
+      "Implement proper risk management before live trading",
+      "Monitor factor performance over time for decay"
+    ],
+    "evaluation_time": "2025-10-16T20:14:39.136211"
+  },
+  "export_time": "2025-10-16T20:14:39.136240",
+  "version": "1.0"
+}

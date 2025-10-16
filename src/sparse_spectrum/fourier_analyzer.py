@@ -71,7 +71,7 @@ class FourierAnalyzer:
         Returns:
             Tuple of (price_data, timestamps)
         """
-        if len(market_data)  np.ndarray:
+        if len(market_data) < self.min_data_length:
         """Remove linear trend from data."""
         x = np.arange(len(data))
         coeffs = np.polyfit(x, data, 1)

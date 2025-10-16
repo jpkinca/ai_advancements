@@ -17,11 +17,11 @@ DATA_CONFIG = {
 
 # LLM Configuration
 LLM_CONFIG = {
-    'llm_model': 'llama',  # 'llama-3-8b', 'grok', 'openai', or 'mock' for testing
-    'llm_api_key': None,  # Set your API key here for Grok/OpenAI
+    'llm_model': 'grok',  # 'llama-3-8b', 'grok', 'openai', or 'mock' for testing
+    'llm_api_key': None,  # Set your Grok API key here or use environment variable GROK_API_KEY
     'huggingface_token': None,  # Set your HF token here for Llama models
-    'temperature': 0.7,
-    'max_tokens': 1000,
+    'temperature': 0.7,  # Higher temperature for more creative factors
+    'max_tokens': 1500,  # Increased for structured responses
     'model_path': None,  # For local models
 }
 
@@ -42,6 +42,9 @@ BACKTEST_CONFIG = {
     'benchmark_ticker': 'SPY',
     'rebalance_freq': 'D',  # Daily rebalancing
     'factor_threshold': 0.0,  # Signal threshold
+    'min_backtest_days': 252,  # Minimum days for backtest (1 year)
+    'signal_threshold_factor': 0.5,  # Factor threshold for signals (z-score)
+    'risk_free_rate': 0.02,  # Risk-free rate for Sharpe calculation (2%)
 }
 
 # Optimization Configuration

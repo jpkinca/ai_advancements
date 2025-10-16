@@ -310,7 +310,7 @@ class MultiAgentTradingSystem(BaseTradingModel):
     
     def _extract_regime_features(self, market_data: List[MarketData]) -> np.ndarray:
         """Extract features describing current market regime."""
-        if len(market_data)  0]) / 10,  # Win rate
+        len([trade for trade in recent_trades if trade["pnl"] > 0]) / max(len(recent_trades), 1),  # Win rate
             np.percentile(returns, 95) - np.percentile(returns, 5),  # Return range
             self._calculate_momentum_score(prices)  # Momentum score
         ]

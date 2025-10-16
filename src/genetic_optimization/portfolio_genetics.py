@@ -249,7 +249,7 @@ class PortfolioEvaluator(FitnessEvaluator):
         sharpe = (annual_return - self.risk_free_rate) / annual_vol if annual_vol > 0 else 0.0
         
         # Sortino ratio (downside deviation)
-        downside_returns = returns[returns  0 else 0.0
+        downside_returns = returns[returns < 0] if len(returns[returns < 0]) > 0 else np.array([0.0])
         sortino = (annual_return - self.risk_free_rate) / downside_vol if downside_vol > 0 else 0.0
         
         # Maximum drawdown

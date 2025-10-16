@@ -51,7 +51,7 @@ class FourierAnalyzer:
     
     def analyze_price_spectrum(self, market_data: List[MarketData]) -> Dict[str, Any]:
         """Analyze price spectrum using FFT."""
-        if len(market_data) = self.config.min_period_days) & (periods  List[FrequencyComponent]:
+        valid_periods = periods[(periods >= self.config.min_period_days)]
         """Find dominant frequency components."""
         # Sort by power spectral density
         sorted_indices = np.argsort(psd)[::-1]

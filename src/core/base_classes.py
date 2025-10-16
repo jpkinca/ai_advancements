@@ -106,7 +106,7 @@ class BaseIndicatorCalculator(ABC):
             self.logger.error("[ERROR] No data provided for indicator calculation")
             return False
         
-        if len(data)  1:
+        if len(data) < 1:
             self.logger.error(f"[ERROR] Mixed symbols in data: {symbols}")
             return False
         

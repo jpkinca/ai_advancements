@@ -267,7 +267,7 @@ class WaveletAnalyzer:
                 'scale_index': max_scale_idx,
                 'scale': self.scales[max_scale_idx],
                 'magnitude': magnitudes[max_scale_idx, time_idx],
-                'frequency': inst_freq[max_scale_idx, time_idx] if max_scale_idx  jump_threshold)[0]
+                'frequency': inst_freq[max_scale_idx, time_idx] if max_scale_idx < len(inst_freq) else 0.0
         
         return {
             'ridges': ridges,

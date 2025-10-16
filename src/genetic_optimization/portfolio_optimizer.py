@@ -86,7 +86,7 @@ class GeneticOptimizer:
             return parent1.copy(), parent2.copy()
         
         # Uniform crossover
-        mask = np.random.random(len(parent1))  np.ndarray:
+        mask = np.random.random(len(parent1)) < 0.5
         """Mutate an individual."""
         if random.random() > self.mutation_rate:
             return individual

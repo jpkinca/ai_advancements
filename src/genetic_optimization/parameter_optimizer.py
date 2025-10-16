@@ -71,7 +71,7 @@ class Gene:
     def mutate(self, mutation_strength: float = 0.1):
         """Mutate gene value."""
         if self.gene_type == 'bool':
-            if random.random()  'Gene':
+            if random.random() < self.mutation_rate:
         """Create copy of gene."""
         return Gene(
             name=self.name,

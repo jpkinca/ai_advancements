@@ -1,0 +1,101 @@
+{
+  "validation_timestamp": "2025-10-16T19:07:21.971177",
+  "overall_readiness_score": 37.5,
+  "validation_results": {
+    "IBKR Gateway Connection": {
+      "status": "fail",
+      "message": "No IBKR Gateway connections available",
+      "recommendation": "Start IBKR Gateway (Paper Trading: port 4002, Live: port 4001)"
+    },
+    "Database Infrastructure": {
+      "status": "fail",
+      "message": "Database manager not found",
+      "recommendation": "Ensure railway_db_manager.py is available"
+    },
+    "AI Module Availability": {
+      "status": "fail",
+      "message": "AI module validation failed: invalid syntax (ppo_trader.py, line 149)"
+    },
+    "Paper Trading Capability": {
+      "status": "fail",
+      "message": "Paper trading validation failed: [WinError 1225] The remote computer refused the network connection",
+      "recommendation": "Check IBKR Gateway paper trading configuration"
+    },
+    "Data Pipeline Readiness": {
+      "status": "pass",
+      "message": "All data pipeline components available",
+      "details": {
+        "components": [
+          "level_ii_data_integration.py",
+          "optimized_faiss_trading.py",
+          "daily_launcher.py"
+        ]
+      }
+    },
+    "Risk Management Systems": {
+      "status": "pass",
+      "message": "Risk management components detected (3/4)",
+      "details": {
+        "position_sizing": false,
+        "stop_loss": false,
+        "drawdown_limits": false,
+        "exposure_limits": false,
+        "drawdown": true,
+        "position_size": true,
+        "risk": true
+      }
+    },
+    "Monitoring Infrastructure": {
+      "status": "pass",
+      "message": "Monitoring ready: 2 files, 3 dirs",
+      "details": {
+        "files": [
+          "DAILY_OPERATING_PROCEDURES.md",
+          "efficiency_validation_results.py"
+        ],
+        "directories": [
+          "logs",
+          "daily_reports",
+          "performance_tracking"
+        ]
+      }
+    },
+    "Production Readiness": {
+      "status": "fail",
+      "message": "Not production ready (42.9% systems operational)",
+      "recommendation": "Significant infrastructure work needed before deployment",
+      "details": {
+        "readiness_percentage": 42.857142857142854,
+        "passed_validations": 3,
+        "total_validations": 7
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "component": "IBKR Gateway Connection",
+      "priority": "high",
+      "recommendation": "Start IBKR Gateway (Paper Trading: port 4002, Live: port 4001)"
+    },
+    {
+      "component": "Database Infrastructure",
+      "priority": "high",
+      "recommendation": "Ensure railway_db_manager.py is available"
+    },
+    {
+      "component": "Paper Trading Capability",
+      "priority": "high",
+      "recommendation": "Check IBKR Gateway paper trading configuration"
+    },
+    {
+      "component": "Production Readiness",
+      "priority": "high",
+      "recommendation": "Significant infrastructure work needed before deployment"
+    }
+  ],
+  "deployment_plan": {
+    "timeline": "2-4 weeks",
+    "approach": "Comprehensive setup required",
+    "focus": "Build infrastructure before attempting deployment"
+  }
+}
