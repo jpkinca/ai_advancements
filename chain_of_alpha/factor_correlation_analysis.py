@@ -55,16 +55,22 @@ class FactorPortfolioConstructor:
                 # Parse the string representation of pandas Series with MultiIndex
                 try:
                     # Split by lines and clean up
-                    lines = [line.strip() for line in factor_values_str.split('\n') if line.strip()]
+                    raw_lines = factor_values_str.split('\n')
+                    # Keep original spacing to detect continuation lines, but also have a stripped version for checks
+                    lines = [ln for ln in raw_lines if ln and ln.strip()]
 
                     # Find the data lines (skip header)
                     data_lines = []
                     for line in lines:
+                        sline = line.strip()
                         # Skip the header line "ticker  Date"
-                        if 'ticker' in line and 'Date' in line:
+                        if 'ticker' in sline and 'Date' in sline:
+                            continue
+                        # Skip pandas footer lines like "Length: 12072, dtype: float64"
+                        if sline.startswith('Length:') or sline.startswith('dtype:'):
                             continue
                         # Skip empty lines
-                        if not line:
+                        if not sline:
                             continue
                         data_lines.append(line)
 
@@ -73,37 +79,46 @@ class FactorPortfolioConstructor:
                     current_ticker = None
 
                     for line in data_lines:
+                        # Split on whitespace; continuation lines will have only 2 parts (date, value)
                         parts = line.split()
                         if len(parts) >= 3:
-                            # Check if this is a ticker line (first column is ticker, no date)
-                            if len(parts) == 3 and parts[0] not in ['ticker', 'Date', '']:
-                                # This is ticker + date + value
-                                ticker, date, value = parts[0], parts[1], parts[2]
-                                key = (ticker, date)
+                            # Line contains ticker, date, value
+                            ticker, date, value = parts[0], parts[1], parts[2]
+                            current_ticker = ticker  # crucial to capture for following continuation lines
+                            key = (ticker, date)
+                            try:
                                 factor_data[key] = float(value)
                                 all_tickers.add(ticker)
                                 all_dates.add(date)
-                            elif len(parts) == 2 and current_ticker:
-                                # This is continuation of previous ticker (date + value)
-                                date, value = parts[0], parts[1]
-                                key = (current_ticker, date)
+                            except ValueError:
+                                # Skip lines that don't parse to float
+                                continue
+                        elif len(parts) == 2 and current_ticker:
+                            # Continuation line: date, value for the current ticker
+                            date, value = parts[0], parts[1]
+                            key = (current_ticker, date)
+                            try:
                                 factor_data[key] = float(value)
                                 all_dates.add(date)
-                            elif len(parts) == 3 and parts[0] != 'ticker':
-                                # Handle case where ticker appears again
-                                current_ticker = parts[0]
-                                date, value = parts[1], parts[2]
-                                key = (current_ticker, date)
-                                factor_data[key] = float(value)
-                                all_tickers.add(current_ticker)
-                                all_dates.add(date)
+                            except ValueError:
+                                continue
 
                     # Create MultiIndex Series
                     if factor_data:
-                        index = pd.MultiIndex.from_tuples(factor_data.keys(), names=['ticker', 'Date'])
-                        series = pd.Series(list(factor_data.values()), index=index)
-                        # Sort by date
-                        series = series.sort_index(level='Date')
+                        # Convert dates to datetime for consistent indexing
+                        tuples = []
+                        values = []
+                        for (t, d), v in factor_data.items():
+                            try:
+                                dt = pd.to_datetime(d)
+                            except Exception:
+                                dt = d
+                            tuples.append((t, dt))
+                            values.append(v)
+                        index = pd.MultiIndex.from_tuples(tuples, names=['ticker', 'Date'])
+                        series = pd.Series(values, index=index)
+                        # Sort by both levels
+                        series = series.sort_index()
                         factor_series[factor_id] = series
 
                 except Exception as e:
@@ -113,7 +128,11 @@ class FactorPortfolioConstructor:
         # Create DataFrame from factor series
         if factor_series:
             # Get all unique dates and tickers
-            all_dates = sorted(list(all_dates))
+            # Ensure datetime for dates
+            try:
+                all_dates = sorted(pd.to_datetime(list(all_dates)))
+            except Exception:
+                all_dates = sorted(list(all_dates))
             all_tickers = sorted(list(all_tickers))
 
             # Create MultiIndex for the DataFrame
@@ -128,7 +147,12 @@ class FactorPortfolioConstructor:
             # Fill NaN values with 0 (factors might not have values for all ticker-date combinations)
             df_factors = df_factors.fillna(0)
 
-            print(f"Extracted {len(df_factors.columns)} factors with {len(df_factors)} observations")
+            # Basic sanity checks
+            obs = len(df_factors)
+            uniq_dates = df_factors.index.get_level_values('Date').nunique() if obs > 0 else 0
+            uniq_tickers = df_factors.index.get_level_values('ticker').nunique() if obs > 0 else 0
+            print(f"Extracted {len(df_factors.columns)} factors with {obs} observations "
+                  f"({uniq_tickers} tickers x {uniq_dates} dates)")
             return df_factors
 
         return pd.DataFrame()
@@ -138,8 +162,16 @@ class FactorPortfolioConstructor:
         if df_factors.empty:
             return pd.DataFrame()
 
-        # Calculate correlation matrix
-        corr_matrix = df_factors.corr()
+        # Drop near-constant columns to avoid NaN correlations
+        variances = df_factors.var(axis=0)
+        valid_cols = variances[variances > 1e-12].index.tolist()
+        if len(valid_cols) < df_factors.shape[1]:
+            dropped = set(df_factors.columns) - set(valid_cols)
+            if dropped:
+                print(f"Warning: Dropping {len(dropped)} near-constant factor(s): {sorted(dropped)}")
+
+        # Calculate correlation matrix on valid columns
+        corr_matrix = df_factors[valid_cols].corr() if valid_cols else pd.DataFrame()
 
         # Display correlation matrix
         print("\n=== FACTOR CORRELATION MATRIX ===")
@@ -267,6 +299,8 @@ class FactorPortfolioConstructor:
 
         # Calculate portfolio metrics
         portfolio_stats = self._calculate_portfolio_stats(portfolio_returns)
+        # Correct number of factors in stats
+        portfolio_stats['n_factors'] = len(selected_factors)
 
         return {
             'weights': weights,
@@ -336,11 +370,12 @@ class FactorPortfolioConstructor:
             print("-" * 40)
             print(f"Selected Factors: {portfolio['selected_factors']}")
             stats = portfolio['stats']
-            print(".3f")
-            print(".3f")
-            print(".3f")
-            print(".3f")
-            print(".3f")
+            if stats:
+                print(f"Total Return: {stats.get('total_return', 0):.1%}")
+                print(f"Annual Return: {stats.get('annual_return', 0):.1%}")
+                print(f"Annual Volatility: {stats.get('annual_volatility', 0):.1%}")
+                print(f"Sharpe Ratio: {stats.get('sharpe_ratio', 0):.3f}")
+                print(f"Max Drawdown: {stats.get('max_drawdown', 0):.1%}")
 
             # Save portfolio results
             self._save_portfolio_results(portfolio)
